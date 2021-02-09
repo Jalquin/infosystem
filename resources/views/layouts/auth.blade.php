@@ -22,7 +22,7 @@
 </head>
 <body class="bg-gradient-primary min-vh-100 d-flex justify-content-center align-items-center">
 
-@yield('main-content')
+@yield('content')
 
 <!-- Scripts -->
 <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>

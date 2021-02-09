@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -27,3 +27,5 @@ Route::put('/profile', 'ProfileController@update')->name('profile.update');
 Route::get('/about', function () {
     return view('about');
 })->name('about');
+
+Route::resource('/items', ItemsController::class);
