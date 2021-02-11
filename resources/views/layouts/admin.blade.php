@@ -64,6 +64,13 @@
             </a>
         </li>
 
+        <li class="nav-item {{ Nav::isRoute('about') }}">
+            <a class="nav-link" href="{{ route('items.index') }}">
+                <i class="fas fa-warehouse"></i>
+                <span>{{ __('Sklad') }}</span>
+            </a>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 

@@ -12,5 +12,6 @@ class Items extends Model
         'description',
         'image',
         'amount',
+        'min_amount',
         'price'];
 }

@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Upravit položku')
+@section('title', 'Upravit položku ' . $item->name)
 
 @section('content')
 
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Edit Blog</h2>
+                <h2>Upravit položku <b>{{ $item->name }}</b></h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('items.index') }}"> Back</a>
@@ -33,19 +33,38 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Title:</strong>
-                    <input type="text" name="title" value="{{ $item->name }}" class="form-control" placeholder="Title">
+                    <strong>Název:</strong>
+                    <input type="text" name="name" value="{{ $item->name }}" class="form-control" placeholder="Název">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Description:</strong>
-                    <textarea class="form-control" style="height:150px" name="description" placeholder="Description">{{ $item->description }}</textarea>
+                    <strong>Popis:</strong>
+                    <textarea class="form-control" style="height:140px" name="description" placeholder="Popis">{{ $item->description }}</textarea>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Množství:</strong>
+                    <input type="number" name="amount" value="{{$item->amount}}" class="form-control" placeholder="Množsví">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Množství:</strong>
+                    <input type="number" name="min_amount" value="{{$item->min_amount}}" class="form-control" placeholder="Minimální množsví">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Cena:</strong>
+                    <input type="number" name="price" value="{{$item->price}}" class="form-control" placeholder="Cena">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
+
         </div>
 
     </form>

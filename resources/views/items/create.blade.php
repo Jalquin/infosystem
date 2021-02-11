@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Create New Blog</h2>
+                <h2>Přidat položku skladu:</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('items.index') }}"> Back</a>
@@ -38,13 +38,19 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Popis:</strong>
-                    <textarea class="form-control" style="height:280px" name="description" placeholder="Popis"></textarea>
+                    <textarea class="form-control" style="height:140px" name="description" placeholder="Popis"></textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Množství:</strong>
                     <input type="number" name="amount" class="form-control" placeholder="Množsví">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Minimální množství:</strong>
+                    <input type="number" name="min_amount" class="form-control" placeholder="Minimální množsví">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

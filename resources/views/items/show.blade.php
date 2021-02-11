@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
-@section('title', 'Přidání nové položky skladu')
+@section('title', 'Detaily položky ' . $item->name)
 
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2> Show blog</h2>
+                <h2>Detaily položky <b>{{ $item->name }}</b></h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('items.index') }}"> Back</a>
@@ -17,14 +17,32 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Title:</strong>
+                <strong>Název:</strong>
                 {{ $item->name }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Description:</strong>
+                <strong>Popis:</strong>
                 {{ $item->description }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Množství:</strong>
+                {{ $item->amount }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Minimální množství:</strong>
+                {{ $item->min_amount }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Cena:</strong>
+                {{ $item->price }}
             </div>
         </div>
     </div>

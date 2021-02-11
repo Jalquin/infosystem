@@ -28,4 +28,4 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::resource('/items', ItemsController::class);
+Route::resource('/items', ItemsController::class)->middleware('auth');

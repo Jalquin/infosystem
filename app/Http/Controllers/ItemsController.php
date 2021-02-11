@@ -42,6 +42,7 @@ class ItemsController extends Controller
             'description',
             'image',
             'amount'=> 'required',
+            'min_amount'=> 'required',
             'price'
         ]);
 
@@ -87,6 +88,7 @@ class ItemsController extends Controller
             'description',
             'image',
             'amount'=> 'required',
+            'min_amount'=> 'required',
             'price'
         ]);
 
@@ -95,6 +97,7 @@ class ItemsController extends Controller
         return redirect()->route('items.index')
             ->with('success','Úspěšně upraveno');
     }
+
 
     /**
      * Remove the specified resource from storage.
