@@ -26,7 +26,7 @@
         </div>
     @endif
 
-    <form action="{{ route('items.update',$item->id) }}" method="POST">
+    <form action="{{ route('items.update',$item->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -43,6 +43,15 @@
                     <textarea class="form-control" style="height:140px" name="description" placeholder="Popis">{{ $item->description }}</textarea>
                 </div>
             </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <strong>Obrázek:</strong>
+                @if($item->image)
+                <img src="{{asset('storage/items_img/'. $item->image)}}">
+                @endif
+                <input type="file" class="form-control" name="image" id="image">
+            </div>
+
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Množství:</strong>

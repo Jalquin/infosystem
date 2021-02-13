@@ -21,6 +21,12 @@
                 {{ $item->name }}
             </div>
         </div>
+        @if($item->image)
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <strong>Obrázek:</strong>
+            <img src="{{asset('storage/items_img/'. $item->image)}}">
+        </div>
+        @endif
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Popis:</strong>

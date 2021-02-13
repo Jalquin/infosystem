@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Items;
+use Illuminate\Support\Facades\Storage;
 
 class ItemsController extends Controller
 {
@@ -37,16 +38,31 @@ class ItemsController extends Controller
      */
     public function store(Request $request)
     {
+        $image = null;
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+        ]);
+        if($request->hasFile('image')){
+            $image = $request->file('image')->getClientOriginalName();
+            $request->image->storeAs('items_img', $image, 'public');
+        }
+
         $request->validate([
             'name'=> 'required',
             'description',
-            'image',
             'amount'=> 'required',
             'min_amount'=> 'required',
             'price'
         ]);
 
-        Items::create($request->all());
+        Items::create([
+            'name'=> $request->name,
+            'description'=> $request->description,
+            'image' => $image,
+            'amount'=> $request->amount,
+            'min_amount'=> $request->min_amount,
+            'price'=> $request->price
+        ]);
 
         return redirect()->route('items.index')
             ->with('success','Úspěšně přidáno.');
@@ -83,16 +99,34 @@ class ItemsController extends Controller
      */
     public function update(Request $request, Items $item)
     {
+        $image = $item->image;
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+        ]);
+        if($request->hasFile('image')){
+            if($image){
+                Storage::delete('/public/items_img/'.$image);
+            }
+            $image = $request->file('image')->getClientOriginalName();
+            $request->image->storeAs('items_img', $image, 'public');
+        }
+
         $request->validate([
             'name'=> 'required',
             'description',
-            'image',
             'amount'=> 'required',
             'min_amount'=> 'required',
             'price'
         ]);
 
-        $item->update($request->all());
+        $item->update([
+            'name'=> $request->name,
+            'description'=> $request->description,
+            'image' => $image,
+            'amount'=> $request->amount,
+            'min_amount'=> $request->min_amount,
+            'price'=> $request->price
+        ]);
 
         return redirect()->route('items.index')
             ->with('success','Úspěšně upraveno');
@@ -108,35 +142,30 @@ class ItemsController extends Controller
     public function destroy(Items $item)
     {
         $item->delete();
+        Storage::delete('/public/items_img/'.$item->image);
 
         return redirect()->route('items.index')
             ->with('success','Úspěšně smazáno');
     }
-/*
-    public function create(Request $request)
-    {
-        $item = new Items();
 
-        $item->name = $request->input('name');
-        $item->description = $request->input('description');
+    public function addAmount($id, Items $item){
+        $item = Items::findOrFail($id);
+        $amount = $item->amount + 1;
+        $item->update([
+            'amount'=> $amount
+        ]);
+        return redirect()->route('items.index')
+            ->with('success','Úspěšně přidáno množství položce '.$item->name);
+    }
 
-        if($request->hasFile('image')){
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $file->move('uploads/items/', $filename);
-            $item->image = $filename;
-        }
-        else{
-            return $request;
-            $item->image = '';
-        }
 
-        $item->amount = $request->input('amount');
-        $item->price = $request->input('price');
-
-        $item->save();
-
-        return view('items.create')->with('item',$item);
-    }*/
+    public function subtractAmount($id, Items $item){
+        $item = Items::findOrFail($id);
+        $amount = $item->amount - 1;
+        $item->update([
+            'amount'=> $amount
+        ]);
+        return redirect()->route('items.index')
+            ->with('success','Úspěšně odebráno množství položce '.$item->name);
+    }
 }

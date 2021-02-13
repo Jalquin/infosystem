@@ -47,7 +47,7 @@
         @foreach ($items as $item)
             <tr>
                 <td>{{ $item->name }}</td>
-                <td>{{ $item->amount }} <div class="btn-group float-right" role="group" aria-label="Basic example"><a class="btn btn-outline-secondary" href="">+</a><a class="btn btn-outline-secondary" href="">-</a></div></td>
+                <td>{{ $item->amount }} <div class="btn-group float-right" role="group" aria-label="Basic example"><a class="btn btn-outline-secondary" href="{{route('items.amount.add', $item->id)}}">+</a><a class="btn btn-outline-secondary" href="{{route('items.amount.subtract', $item->id )}}">-</a></div></td>
                 <td>{{ $item->price }}</td>
                 <td>
                     <form action="{{ route('items.destroy',$item->id) }}" method="POST">
