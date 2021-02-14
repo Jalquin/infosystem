@@ -24,32 +24,38 @@
         @if($item->image)
         <div class="col-xs-12 col-sm-12 col-md-12">
             <strong>Obrázek:</strong>
-            <img src="{{asset('storage/items_img/'. $item->image)}}">
+            <img class="img-fluid" style="max-height: 500px" src="{{asset('storage/items_img/'. $item->image)}}">
         </div>
         @endif
+        @if($item->description)
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Popis:</strong>
                 {{ $item->description }}
             </div>
         </div>
+        @endif
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Množství:</strong>
-                {{ $item->amount }}
+                {{ $item->amount }} Ks
             </div>
         </div>
+        @if($item->min_amount)
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Minimální množství:</strong>
-                {{ $item->min_amount }}
+                {{ $item->min_amount }} Ks
             </div>
         </div>
+        @endif
+        @if($item->price)
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Cena:</strong>
-                {{ $item->price }}
+                {{ $item->price }} Kč
             </div>
         </div>
+        @endif
     </div>
 @endsection

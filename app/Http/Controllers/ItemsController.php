@@ -40,7 +40,7 @@ class ItemsController extends Controller
     {
         $image = null;
         $request->validate([
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5000',
         ]);
         if($request->hasFile('image')){
             $image = $request->file('image')->getClientOriginalName();
@@ -51,7 +51,7 @@ class ItemsController extends Controller
             'name'=> 'required',
             'description',
             'amount'=> 'required',
-            'min_amount'=> 'required',
+            'min_amount',
             'price'
         ]);
 
@@ -65,7 +65,7 @@ class ItemsController extends Controller
         ]);
 
         return redirect()->route('items.index')
-            ->with('success','Úspěšně přidáno.');
+            ->with('success','Úspěšně přidána položka '.$request->name);
     }
 
     /**
@@ -115,7 +115,7 @@ class ItemsController extends Controller
             'name'=> 'required',
             'description',
             'amount'=> 'required',
-            'min_amount'=> 'required',
+            'min_amount',
             'price'
         ]);
 
@@ -129,7 +129,7 @@ class ItemsController extends Controller
         ]);
 
         return redirect()->route('items.index')
-            ->with('success','Úspěšně upraveno');
+            ->with('success','Úspěšně upravena položka '.$item->name);
     }
 
 
@@ -145,7 +145,7 @@ class ItemsController extends Controller
         Storage::delete('/public/items_img/'.$item->image);
 
         return redirect()->route('items.index')
-            ->with('success','Úspěšně smazáno');
+            ->with('success','Úspěšně smazána pložka '.$item->name);
     }
 
     public function addAmount($id, Items $item){
@@ -157,7 +157,6 @@ class ItemsController extends Controller
         return redirect()->route('items.index')
             ->with('success','Úspěšně přidáno množství položce '.$item->name);
     }
-
 
     public function subtractAmount($id, Items $item){
         $item = Items::findOrFail($id);
