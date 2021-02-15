@@ -16,4 +16,9 @@ class Items extends Model
         'amount',
         'min_amount',
         'price'];
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'item_categories');
+    }
 }

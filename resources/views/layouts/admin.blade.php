@@ -4,8 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Laravel SB Admin 2">
-    <meta name="author" content="Alejandro RH">
+    <meta name="description" content="InfoSystem">
+    <meta name="author" content="Jakub Cerveny">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -56,19 +56,38 @@
             {{ __('Kategorie') }}
         </div>
 
-        <!-- Nav Item - About -->
+        <!-- Nav Item - Blank page -->
         <li class="nav-item {{ Nav::isRoute('about') }}">
             <a class="nav-link" href="{{ route('about') }}">
                 <i class="fas fa-fw fa-hands-helping"></i>
-                <span>{{ __('O nás') }}</span>
+                <span>{{ __('Blank page') }}</span>
             </a>
         </li>
 
+        <!-- Nav Item - Depot -->
         <li class="nav-item {{ Nav::isRoute('about') }}">
             <a class="nav-link" href="{{ route('items.index') }}">
                 <i class="fas fa-warehouse"></i>
                 <span>{{ __('Sklad') }}</span>
             </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Nav Item - Depot management -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDepot" aria-expanded="false" aria-controls="collapseDepot">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Nastavení skladu</span>
+            </a>
+            <div id="collapseDepot" class="collapse" aria-labelledby="headingDepot" data-parent="#accordionSidebar" style="">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Nastavení skladu:</h6>
+                    <a class="collapse-item" href="{{route('categories.index')}}">Kategorie</a>
+                    <a class="collapse-item" href="#">Umístění</a>
+                </div>
+            </div>
         </li>
 
         <!-- Divider -->
@@ -188,5 +207,6 @@
 <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 @stack('scripts')
+
 </body>
 </html>

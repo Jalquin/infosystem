@@ -2,6 +2,9 @@
 
 @section('title', 'Přidání nové položky skladu')
 
+@section('css')
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006288/BBBootstrap/choices.min.css?version=7.0.0">
 @section('content')
 
     <div class="row">
@@ -10,7 +13,7 @@
                 <h2>Přidat položku skladu:</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('items.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('items.index') }}"> Zpět</a>
             </div>
         </div>
     </div>
@@ -65,6 +68,16 @@
                     <input type="number" name="price" class="form-control" placeholder="Cena">
                 </div>
             </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Kategorie:</strong>
+                    <select name="categories[]" id="choices-multiple-remove-button" placeholder="Přidejte až 5 kategorií" multiple>
+                        @foreach($categories as $category)
+                           <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
@@ -73,3 +86,19 @@
     </form>
 
 @endsection
+
+@push('scripts')
+<script src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006273/BBBootstrap/choices.min.js?version=7.0.0"></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script>
+    $(document).ready(function(){
+        var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+            removeItemButton: true,
+            maxItemCount:5,
+            searchResultLimit:5,
+            renderChoiceLimit:5
+        });
+    });
+</script>
+@endpush

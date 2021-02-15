@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Items;
+use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ItemsController extends Controller
@@ -27,7 +28,8 @@ class ItemsController extends Controller
      */
     public function create()
     {
-        return view('items.create');
+        $categories = Category::all();
+        return view('items.create', compact('categories'));
     }
 
     /**
@@ -55,7 +57,7 @@ class ItemsController extends Controller
             'price'
         ]);
 
-        Items::create([
+        $item = Items::create([
             'name'=> $request->name,
             'description'=> $request->description,
             'image' => $image,
@@ -64,6 +66,8 @@ class ItemsController extends Controller
             'price'=> $request->price
         ]);
 
+        $item->categories()->sync($request->categories);
+
         return redirect()->route('items.index')
             ->with('success','Úspěšně přidána položka '.$request->name);
     }
@@ -71,23 +75,25 @@ class ItemsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Items  $item
+     * @param  \App\Models\Items  $item
      * @return \Illuminate\Http\Response
      */
     public function show(Items $item)
     {
-        return view('items.show',compact('item'));
+        $category = $item->categories;
+        return view('items.show',compact('item', 'category'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Items  $item
+     * @param  \App\Models\Items  $item
      * @return \Illuminate\Http\Response
      */
     public function edit(Items $item)
     {
-        return view('items.edit',compact('item'));
+        $categories = Category::all();
+        return view('items.edit',compact('item', 'categories'));
     }
 
     /**
@@ -128,6 +134,8 @@ class ItemsController extends Controller
             'price'=> $request->price
         ]);
 
+        $item->categories()->sync($request->categories);
+
         return redirect()->route('items.index')
             ->with('success','Úspěšně upravena položka '.$item->name);
     }
@@ -136,7 +144,7 @@ class ItemsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Items  $item
+     * @param  \App\Models\Items  $item
      * @return \Illuminate\Http\Response
      */
     public function destroy(Items $item)

@@ -31,3 +31,5 @@ Route::get('/about', function () {
 Route::get('/items/edit/{id}/add', 'ItemsController@addAmount')->middleware('auth')->name('items.amount.add');
 Route::get('/items/edit/{id}/subtract', 'ItemsController@subtractAmount')->middleware('auth')->name('items.amount.subtract');
 Route::resource('/items', ItemsController::class)->middleware('auth');
+
+Route::resource('/categories', CategoryController::class)->middleware('auth');

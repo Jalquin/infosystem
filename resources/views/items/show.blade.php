@@ -3,6 +3,7 @@
 @section('title', 'Detaily položky ' . $item->name)
 
 @section('content')
+
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -57,5 +58,20 @@
             </div>
         </div>
         @endif
+
+        @if($category)
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Kategorie:</strong>
+                <ul>
+                @foreach($category['category'] as $category)
+                   <li>{{$category->name}}</li>
+                @endforeach
+                </ul>
+            </div>
+        </div>
+        @endif
+
     </div>
+
 @endsection
