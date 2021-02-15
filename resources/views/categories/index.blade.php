@@ -23,7 +23,7 @@
         </div>
     @endif
 
-    <h1 class="h3 mb-2 text-gray-800">Sklad</h1>
+    <h1 class="h3 mb-2 text-gray-800">Sklad - Kategorie</h1>
     <a class="btn btn-success" href="{{ route('categories.create') }}"> Přidat kategorii</a>
 
     <div class="card shadow mb-4">

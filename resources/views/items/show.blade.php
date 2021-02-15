@@ -59,13 +59,13 @@
         </div>
         @endif
 
-        @if($category)
+        @if($item->categories)
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Kategorie:</strong>
                 <ul>
-                @foreach($category['category'] as $category)
-                   <li>{{$category->name}}</li>
+                @foreach($item->categories as $category)
+                    <li>{{$category->name}}</li>
                 @endforeach
                 </ul>
             </div>

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Items;
+use App\Models\Item;
 use App\Models\Category;
+use App\Models\Position;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class ItemsController extends Controller
+class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,7 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        $items = Items::all();
+        $items = Item::with('categories')->get();
 
         return view('items.index',compact('items'));
     }
@@ -29,7 +30,8 @@ class ItemsController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('items.create', compact('categories'));
+        $positions = Position::all();
+        return view('items.create', compact('categories','positions'));
     }
 
     /**
@@ -57,7 +59,7 @@ class ItemsController extends Controller
             'price'
         ]);
 
-        $item = Items::create([
+        $item = Item::create([
             'name'=> $request->name,
             'description'=> $request->description,
             'image' => $image,
@@ -66,7 +68,7 @@ class ItemsController extends Controller
             'price'=> $request->price
         ]);
 
-        $item->categories()->sync($request->categories);
+        $item->categories()->attach($request->categories);
 
         return redirect()->route('items.index')
             ->with('success','Úspěšně přidána položka '.$request->name);
@@ -75,22 +77,22 @@ class ItemsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Items  $item
+     * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function show(Items $item)
+    public function show(Item $item)
     {
-        $category = $item->categories;
-        return view('items.show',compact('item', 'category'));
+        $categories = Category::with('items')->get();
+        return view('items.show',compact('categories', 'item'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Items  $item
+     * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function edit(Items $item)
+    public function edit(Item $item)
     {
         $categories = Category::all();
         return view('items.edit',compact('item', 'categories'));
@@ -103,7 +105,7 @@ class ItemsController extends Controller
      * @param  \App\Items  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Items $item)
+    public function update(Request $request, Item $item)
     {
         $image = $item->image;
         $request->validate([
@@ -144,10 +146,10 @@ class ItemsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Items  $item
+     * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Items $item)
+    public function destroy(Item $item)
     {
         $item->delete();
         Storage::delete('/public/items_img/'.$item->image);
@@ -156,8 +158,8 @@ class ItemsController extends Controller
             ->with('success','Úspěšně smazána pložka '.$item->name);
     }
 
-    public function addAmount($id, Items $item){
-        $item = Items::findOrFail($id);
+    public function addAmount($id, Item $item){
+        $item = Item::findOrFail($id);
         $amount = $item->amount + 1;
         $item->update([
             'amount'=> $amount
@@ -166,8 +168,8 @@ class ItemsController extends Controller
             ->with('success','Úspěšně přidáno množství položce '.$item->name);
     }
 
-    public function subtractAmount($id, Items $item){
-        $item = Items::findOrFail($id);
+    public function subtractAmount($id, Item $item){
+        $item = Item::findOrFail($id);
         $amount = $item->amount - 1;
         $item->update([
             'amount'=> $amount

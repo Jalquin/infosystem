@@ -1,10 +1,9 @@
 @extends('layouts.admin')
 
-@section('title', 'Sklad')
+@section('title', 'Pozice skladu')
 
 @section('css')
-    <link href="{{asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
-{{--    <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">--}}
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 @endsection
 
 @section('content')
@@ -24,55 +23,43 @@
         </div>
     @endif
 
-    <h1 class="h3 mb-2 text-gray-800">Sklad</h1>
-    <a class="btn btn-success" href="{{ route('items.create') }}"> Přidat položku</a>
+    <h1 class="h3 mb-2 text-gray-800">Sklad - Pozice</h1>
+    <a class="btn btn-success" href="{{ route('positions.create') }}"> Přidat pozici</a>
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Všechny položky skladu</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Všechny pozice</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="myTable">
+                <table class="dataTables_wrapper dt-bootstrap4" id="myTable">
                     <thead>
                     <tr>
                         <th>Název</th>
-                        <th>kategorie</th>
-                        <th>Množství</th>
                         <th>Akce</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
                         <th>Název</th>
-                        <th>Kategorie</th>
-                        <th>Množství</th>
                         <th>Akce</th>
                     </tr>
                     </tfoot>
                     <tbody>
 
-                    @foreach ($items as $item)
+                    @foreach ($positions as $position)
                         <tr>
-                            <td>{{ $item->name }}</td>
+                            <td>{{ $position->name }}</td>
                             <td>
-                                <ul>
-                                    @foreach($item->categories as $category)
-                                        <li>{{$category->name}}</li>
-                                    @endforeach
-                                </ul>
-                            </td>>
-                            <td>{{ $item->amount }}<div class="btn-group float-right" role="group" aria-label="Basic example"><a class="btn btn-outline-secondary" href="{{route('items.amount.add', $item->id)}}">+</a><a class="btn btn-outline-secondary" href="{{route('items.amount.subtract', $item->id )}}">-</a></div></td>
-                            <td>
-                                <form action="{{ route('items.destroy',$item->id) }}" method="POST">
+                                <form action="{{ route('positions.destroy',$position->id) }}" method="POST">
 
-                                    <a class="btn btn-info" href="{{ route('items.show',$item->id) }}">Zobrazit</a>
+                                    <a class="btn btn-info" href="{{ route('positions.show',$position->id) }}">Zobrazit</a>
 
-                                    <a class="btn btn-primary" href="{{ route('items.edit',$item->id) }}">Upravit</a>
+                                    <a class="btn btn-primary" href="{{ route('positions.edit',$position->id) }}">Upravit</a>
 
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModalForId{{$item->id}}">Smazat</button>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModalForId{{$position->id}}">Smazat</button>
 
-                                    <div class="modal fade" id="deleteModalForId{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="deleteModalForId{{$position->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -81,7 +68,7 @@
                                                         <span aria-hidden="true">×</span>
                                                     </button>
                                                 </div>
-                                                <div class="modal-body">Opravdu chcete smazat položku {{$item->name}}?</div>
+                                                <div class="modal-body">Opravdu chcete smazat položku {{$position->name}}?</div>
                                                 <div class="modal-footer">
                                                     <button class="btn btn-link" type="button" data-dismiss="modal">{{ __('Zrušit') }}</button>
                                                     @csrf
@@ -95,7 +82,6 @@
                                 </form>
                             </td>
                         </tr>
-
                     @endforeach
 
                     </tbody>
@@ -109,18 +95,14 @@
 @endsection
 
 @push('scripts')
-{{--    <script src="//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>--}}
-
-<script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-
-<script>
-    $(document).ready(function() {
-        $('#myTable').DataTable({
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Czech.json"
-            }
-        });
-    } );
-</script>
+    <script src="//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+        <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Czech.json"
+                }
+            });
+        } );
+    </script>
 @endpush

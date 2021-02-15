@@ -85,7 +85,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Nastavení skladu:</h6>
                     <a class="collapse-item" href="{{route('categories.index')}}">Kategorie</a>
-                    <a class="collapse-item" href="#">Umístění</a>
+                    <a class="collapse-item" href="{{route('positions.index')}}">Umístění</a>
                 </div>
             </div>
         </li>
