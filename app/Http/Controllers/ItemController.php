@@ -68,10 +68,13 @@ class ItemController extends Controller
             'price'=> $request->price
         ]);
 
+        $item->position()->associate($request->position_id);
+        $item->save();
+
         $item->categories()->attach($request->categories);
 
         return redirect()->route('items.index')
-            ->with('success','Úspěšně přidána položka '.$request->name);
+            ->with('success','Úspěšně přidána položka '.$request->name.'.');
     }
 
     /**
@@ -83,7 +86,8 @@ class ItemController extends Controller
     public function show(Item $item)
     {
         $categories = Category::with('items')->get();
-        return view('items.show',compact('categories', 'item'));
+        $position = Position::with('items')->get();
+        return view('items.show',compact('item','categories','position'));
     }
 
     /**
@@ -95,14 +99,15 @@ class ItemController extends Controller
     public function edit(Item $item)
     {
         $categories = Category::all();
-        return view('items.edit',compact('item', 'categories'));
+        $positions = Position::all();
+        return view('items.edit',compact('item', 'categories', 'positions'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Items  $item
+     * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Item $item)
@@ -124,7 +129,7 @@ class ItemController extends Controller
             'description',
             'amount'=> 'required',
             'min_amount',
-            'price'
+            'price',
         ]);
 
         $item->update([
@@ -136,10 +141,13 @@ class ItemController extends Controller
             'price'=> $request->price
         ]);
 
+        $item->position()->associate($request->position_id);
+        $item->save();
+
         $item->categories()->sync($request->categories);
 
         return redirect()->route('items.index')
-            ->with('success','Úspěšně upravena položka '.$item->name);
+            ->with('success','Úspěšně upravena položka '.$item->name.'.');
     }
 
 
@@ -165,7 +173,7 @@ class ItemController extends Controller
             'amount'=> $amount
         ]);
         return redirect()->route('items.index')
-            ->with('success','Úspěšně přidáno množství položce '.$item->name);
+            ->with('success','Úspěšně přidáno množství položce '.$item->name.'. Konečné množství je : '.$item->amount);
     }
 
     public function subtractAmount($id, Item $item){
@@ -175,6 +183,6 @@ class ItemController extends Controller
             'amount'=> $amount
         ]);
         return redirect()->route('items.index')
-            ->with('success','Úspěšně odebráno množství položce '.$item->name);
+            ->with('success','Úspěšně odebráno množství položce '.$item->name.'. Konečné množství je : '.$item->amount);
     }
 }

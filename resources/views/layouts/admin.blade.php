@@ -42,7 +42,7 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item {{ Nav::isRoute('home') }}">
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('home') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>{{ __('Přehled') }}</span></a>
@@ -57,15 +57,15 @@
         </div>
 
         <!-- Nav Item - Blank page -->
-        <li class="nav-item {{ Nav::isRoute('about') }}">
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('about') }}">
-                <i class="fas fa-fw fa-hands-helping"></i>
+                <i class="far fa-sticky-note"></i>
                 <span>{{ __('Blank page') }}</span>
             </a>
         </li>
 
         <!-- Nav Item - Depot -->
-        <li class="nav-item {{ Nav::isRoute('about') }}">
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('items.index') }}">
                 <i class="fas fa-warehouse"></i>
                 <span>{{ __('Sklad') }}</span>

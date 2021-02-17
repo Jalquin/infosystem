@@ -78,13 +78,26 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Kategorie:</strong>
-                    <select name="categories[]" id="choices-multiple-remove-button" placeholder="Přidejte až 5 kategorií" multiple>
+                    <select name="categories[]" id="category-select-multiple" placeholder="Zvolte až 5 kategorií" multiple>
                         @foreach($categories as $category)
                             <option value="{{$category->id}}" @if(in_array($category->id, $item->categories->pluck('id')->toArray())) selected @endif>{{$category->name}}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Umístění:</strong>
+                    <select name="position_id" id="position-select">
+                        @if($item->position_id == null ) <option value="" selected disabled hidden>Zvolte umístění</option> @endif
+                        @foreach($positions as $position)
+                            <option value="{{$position->id}}" @if($item->position_id == $position->id ) selected @endif>{{$position->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
@@ -101,9 +114,15 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script>
         $(document).ready(function(){
-            var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+            var categorySelectMultiple = new Choices('#category-select-multiple', {
                 removeItemButton: true,
                 maxItemCount:5,
+                searchResultLimit:5,
+                renderChoiceLimit:5
+            });
+            var positionSelect = new Choices('#position-select', {
+                removeItemButton: true,
+                maxItemCount:1,
                 searchResultLimit:5,
                 renderChoiceLimit:5
             });

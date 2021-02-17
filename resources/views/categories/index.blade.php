@@ -24,7 +24,7 @@
     @endif
 
     <h1 class="h3 mb-2 text-gray-800">Sklad - Kategorie</h1>
-    <a class="btn btn-success" href="{{ route('categories.create') }}"> Přidat kategorii</a>
+    <a class="btn btn-success mb-1" href="{{ route('categories.create') }}"> Přidat kategorii</a>
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">

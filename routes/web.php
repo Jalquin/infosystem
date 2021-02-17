@@ -28,8 +28,8 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('/items/edit/{id}/add', 'ItemsController@addAmount')->middleware('auth')->name('items.amount.add');
-Route::get('/items/edit/{id}/subtract', 'ItemsController@subtractAmount')->middleware('auth')->name('items.amount.subtract');
+Route::get('/items/edit/{id}/add', 'ItemController@addAmount')->middleware('auth')->name('items.amount.add');
+Route::get('/items/edit/{id}/subtract', 'ItemController@subtractAmount')->middleware('auth')->name('items.amount.subtract');
 Route::resource('/items', ItemController::class)->middleware('auth');
 
 Route::resource('/categories', CategoryController::class)->middleware('auth');

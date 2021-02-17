@@ -58,20 +58,28 @@
             </div>
         </div>
         @endif
-
-        @if($item->categories)
+        @if($item->position)
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Umístění:</strong>
+                    {{ $item->position->name }}
+                </div>
+            </div>
+        @endif
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Kategorie:</strong>
                 <ul>
-                @foreach($item->categories as $category)
+                @forelse($item->categories as $category)
                     <li>{{$category->name}}</li>
-                @endforeach
+                @empty
+                    <p>
+                        Položka <b>{{$item->name}}</b> nemá přiřazenou žádnou kategorii.
+                    </p>
+                @endforelse
                 </ul>
             </div>
         </div>
-        @endif
-
     </div>
 
 @endsection

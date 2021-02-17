@@ -25,7 +25,7 @@
     @endif
 
     <h1 class="h3 mb-2 text-gray-800">Sklad</h1>
-    <a class="btn btn-success" href="{{ route('items.create') }}"> Přidat položku</a>
+    <a class="btn btn-success mb-1" href="{{ route('items.create') }}"> Přidat položku</a>
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -37,7 +37,7 @@
                     <thead>
                     <tr>
                         <th>Název</th>
-                        <th>kategorie</th>
+                        <th>Kategorie</th>
                         <th>Množství</th>
                         <th>Akce</th>
                     </tr>
@@ -61,7 +61,7 @@
                                         <li>{{$category->name}}</li>
                                     @endforeach
                                 </ul>
-                            </td>>
+                            </td>
                             <td>{{ $item->amount }}<div class="btn-group float-right" role="group" aria-label="Basic example"><a class="btn btn-outline-secondary" href="{{route('items.amount.add', $item->id)}}">+</a><a class="btn btn-outline-secondary" href="{{route('items.amount.subtract', $item->id )}}">-</a></div></td>
                             <td>
                                 <form action="{{ route('items.destroy',$item->id) }}" method="POST">
