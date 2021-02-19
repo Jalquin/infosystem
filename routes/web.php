@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\PositionController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,20 +24,20 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/profile', 'ProfileController@index')->name('profile');
-Route::put('/profile', 'ProfileController@update')->name('profile.update');
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
+Route::get('/blank', function () {
+    return view('blank');
+})->name('blank');
 
-Route::get('/items/edit/{id}/add', 'ItemController@addAmount')->middleware('auth')->name('items.amount.add');
-Route::get('/items/edit/{id}/subtract', 'ItemController@subtractAmount')->middleware('auth')->name('items.amount.subtract');
-Route::resource('/items', ItemController::class)->middleware('auth');
+Route::get('/items/edit/{id}/add', [ItemController::class, 'addAmount'])->name('items.amount.add');
+Route::get('/items/edit/{id}/subtract', [ItemController::class, 'subtractAmount'])->name('items.amount.subtract');
+Route::resource('/items', ItemController::class);
 
-Route::resource('/categories', CategoryController::class)->middleware('auth');
+Route::resource('/categories', CategoryController::class);
 
-Route::resource('/positions', PositionController::class)->middleware('auth');
+Route::resource('/positions', PositionController::class);
 

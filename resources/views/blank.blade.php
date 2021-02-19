@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'O nás')
+@section('title', 'Blank')
 
 @section('content')
     <!-- Page Heading -->

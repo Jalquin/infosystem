@@ -10,7 +10,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Info System - @yield('title')</title>
+    <title>IS - @yield('title')</title>
 
     <!-- Fonts -->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
@@ -18,10 +18,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    @yield('css')
 
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon" type="image/png">
-    @yield('css')
+
 </head>
 <body id="page-top">
 
@@ -58,7 +59,7 @@
 
         <!-- Nav Item - Blank page -->
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('about') }}">
+            <a class="nav-link" href="{{ route('blank') }}">
                 <i class="far fa-sticky-note"></i>
                 <span>{{ __('Blank page') }}</span>
             </a>
@@ -73,7 +74,7 @@
         </li>
 
         <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
+        <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Depot management -->
         <li class="nav-item">
