@@ -14,13 +14,15 @@
 
     <!-- Fonts -->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
-    @yield('css')
+@yield('css')
 
-    <!-- Favicon -->
+<!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon" type="image/png">
 
 </head>
@@ -78,11 +80,13 @@
 
         <!-- Nav Item - Depot management -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDepot" aria-expanded="false" aria-controls="collapseDepot">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDepot"
+               aria-expanded="false" aria-controls="collapseDepot">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Nastavení skladu</span>
             </a>
-            <div id="collapseDepot" class="collapse" aria-labelledby="headingDepot" data-parent="#accordionSidebar" style="">
+            <div id="collapseDepot" class="collapse" aria-labelledby="headingDepot" data-parent="#accordionSidebar"
+                 style="">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Nastavení skladu:</h6>
                     <a class="collapse-item" href="{{route('categories.index')}}">Kategorie</a>
@@ -115,23 +119,28 @@
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
-
+                <span class="navbar-text">
+                    <h5><span id="time"></span><br><span id="date"></span></h5>
+                </span>
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
-
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         @if (Auth::check())
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                                <figure class="img-profile rounded-circle avatar font-weight-bold" data-initial="{{ Auth::user()->name[0] }}"></figure>
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                                <figure class="img-profile rounded-circle avatar font-weight-bold"
+                                        data-initial="{{ Auth::user()->name[0] }}"></figure>
                             </a>
                         @else
                             <a href="{{route('home')}}"></a>
-                        @endif
+                    @endif
 
-                        <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                    <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="{{ route('profile') }}">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 {{ __('Profil') }}
@@ -181,7 +190,8 @@
 </a>
 
 <!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -193,7 +203,8 @@
             <div class="modal-body">Pro odhlášení zvolte možnost "Odhlásit se".</div>
             <div class="modal-footer">
                 <button class="btn btn-link" type="button" data-dismiss="modal">{{ __('Zrušit') }}</button>
-                <a class="btn btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Odhlásit se') }}</a>
+                <a class="btn btn-danger" href="{{ route('logout') }}"
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Odhlásit se') }}</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
@@ -207,6 +218,15 @@
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+<script>
+    window.setInterval(ut, 1000);
+
+    function ut() {
+        const d = new Date();
+        document.getElementById("time").innerHTML = d.toLocaleTimeString();
+        document.getElementById("date").innerHTML = d.toLocaleDateString();
+    }
+</script>
 @stack('scripts')
 
 </body>

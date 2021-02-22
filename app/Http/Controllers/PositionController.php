@@ -37,66 +37,66 @@ class PositionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $request->validate([
-            'name'=> 'required',
+            'name' => 'required',
         ]);
 
         Position::create($request->all());
 
         return redirect()->route('positions.index')
-            ->with('success','Úspěšně přidána pozice '.$request->name);
+            ->with('success', 'Úspěšně přidána pozice ' . $request->name);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Position  $position
+     * @param \App\Models\Position $position
      * @return \Illuminate\Http\Response
      */
     public function show(Position $position)
     {
-        return view('positions.show',compact('position'));
+        return view('positions.show', compact('position'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Position  $position
+     * @param \App\Models\Position $position
      * @return \Illuminate\Http\Response
      */
     public function edit(Position $position)
     {
-        return view('positions.edit',compact('position'));
+        return view('positions.edit', compact('position'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Position  $position
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Position $position
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Position $position)
     {
         $request->validate([
-            'name'=> 'required'
+            'name' => 'required'
         ]);
 
         $position->update($request->all());
 
         return redirect()->route('positions.index')
-            ->with('success','Úspěšně upravena pozice '.$position->name);
+            ->with('success', 'Úspěšně upravena pozice ' . $position->name);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Position  $position
+     * @param \App\Models\Position $position
      * @return \Illuminate\Http\Response
      */
     public function destroy(Position $position)
@@ -104,6 +104,6 @@ class PositionController extends Controller
         $position->delete();
 
         return redirect()->route('positions.index')
-            ->with('success','Úspěšně smazána pozice '.$position->name);
+            ->with('success', 'Úspěšně smazána pozice ' . $position->name);
     }
 }

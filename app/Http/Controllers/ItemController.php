@@ -43,7 +43,9 @@ class ItemController extends Controller
             }
         }
 
-        return view('items.index', compact('items', 'positionItems', 'positions', 'categories', 'categoriesItem'));
+        $lowItems = Item::where('is_enough', 0)->get();
+
+        return view('items.index', compact('items', 'positionItems', 'positions', 'categories', 'categoriesItem', 'lowItems'));
     }
 
     /**
@@ -83,12 +85,16 @@ class ItemController extends Controller
             'price'
         ]);
 
+        if ($request->min_amount != null) $enough = $request->amount >= $request->min_amount;
+        else $enough = null;
+
         $item = Item::create([
             'name' => $request->name,
             'description' => $request->description,
             'image' => $image,
             'amount' => $request->amount,
             'min_amount' => $request->min_amount,
+            'is_enough' => $enough,
             'price' => $request->price
         ]);
 
@@ -156,12 +162,16 @@ class ItemController extends Controller
             'price',
         ]);
 
+        if ($request->min_amount != null) $enough = $request->amount >= $request->min_amount;
+        else $enough = null;
+
         $item->update([
             'name' => $request->name,
             'description' => $request->description,
             'image' => $image,
             'amount' => $request->amount,
             'min_amount' => $request->min_amount,
+            'is_enough' => $enough,
             'price' => $request->price
         ]);
 
@@ -194,8 +204,13 @@ class ItemController extends Controller
     {
         $item = Item::findOrFail($id);
         $amount = $item->amount + 1;
+
+        if ($item->min_amount != null) $enough = $amount >= $item->min_amount;
+        else $enough = null;
+
         $item->update([
-            'amount' => $amount
+            'amount' => $amount,
+            'is_enough' => $enough
         ]);
         return redirect()->route('items.index')
             ->with('success', 'Úspěšně přidáno množství položce ' . $item->name . '. Konečné množství je : ' . $item->amount);
@@ -205,8 +220,13 @@ class ItemController extends Controller
     {
         $item = Item::findOrFail($id);
         $amount = $item->amount - 1;
+
+        if ($item->min_amount != null) $enough = $amount >= $item->min_amount;
+        else $enough = null;
+
         $item->update([
-            'amount' => $amount
+            'amount' => $amount,
+            'is_enough' => $enough
         ]);
         return redirect()->route('items.index')
             ->with('success', 'Úspěšně odebráno množství položce ' . $item->name . '. Konečné množství je : ' . $item->amount);

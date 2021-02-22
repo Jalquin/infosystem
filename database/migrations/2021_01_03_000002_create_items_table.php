@@ -20,6 +20,7 @@ class CreateItemsTable extends Migration
             $table->string('image')->nullable();
             $table->integer('amount');
             $table->integer('min_amount')->nullable();
+            $table->boolean('is_enough')->nullable();
             $table->integer('price')->nullable();
             $table->foreignId('position_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();

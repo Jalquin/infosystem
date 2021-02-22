@@ -4,16 +4,13 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Upravit pozici <b>{{ $position->name }}</b></h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('positions.index') }}"> Zpět</a>
-            </div>
-        </div>
-    </div>
+    <h2>Upravit pozici <b>{{ $position->name }}</b></h2>
+    <a href="{{ route('positions.index') }}" class="btn btn-secondary btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-arrow-left"></i>
+                    </span>
+        <span class="text">Zpět</span>
+    </a>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -29,18 +26,17 @@
     <form action="{{ route('positions.update',$position->id) }}" method="POST">
         @csrf
         @method('PUT')
-
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Název:</strong>
-                    <input type="text" name="name" value="{{ $position->name }}" class="form-control" placeholder="Název">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Uložit</button>
-            </div>
+        <div class="form-group">
+            <label for="name">Název:</label>
+            <input id="name" type="text" name="name" value="{{ $position->name }}" class="form-control"
+                   placeholder="Název">
         </div>
+        <button type="submit" class="btn btn-primary btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-save"></i>
+            </span>
+            <span class="text">Uložit</span>
+        </button>
     </form>
 
 @endsection

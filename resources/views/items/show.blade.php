@@ -4,82 +4,105 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Detaily položky <b>{{ $item->name }}</b></h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('items.index') }}"> Back</a>
-            </div>
-        </div>
-    </div>
+    <h2>Detaily položky <b>{{ $item->name }}</b></h2>
+    <a href="{{ route('items.index') }}" class="btn btn-secondary btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-arrow-left"></i>
+                    </span>
+        <span class="text">Zpět</span>
+    </a>
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Název:</strong>
-                {{ $item->name }}
-            </div>
+    <div class="form-group">
+        <label>Název:</label>
+        {{ $item->name }}
+    </div>
+    @if($item->image)
+        <label>Obrázek:</label>
+        <img class="img-fluid" style="max-height: 500px" src="{{asset('storage/items_img/'. $item->image)}}"
+             alt="Obrázek položky {{ $item->name }}">
+    @endif
+    @if($item->description)
+        <div class="form-group">
+            <label>Popis:</label>
+            {{ $item->description }}
         </div>
-        @if($item->image)
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <strong>Obrázek:</strong>
-            <img class="img-fluid" style="max-height: 500px" src="{{asset('storage/items_img/'. $item->image)}}">
+    @endif
+    <div class="form-group">
+        <label>Množství:</label>
+        {{ $item->amount }} Ks
+    </div>
+    @if($item->min_amount)
+        <div class="form-group">
+            <label>Minimální množství:</label>
+            {{ $item->min_amount }} Ks
         </div>
-        @endif
-        @if($item->description)
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Popis:</strong>
-                {{ $item->description }}
-            </div>
+    @endif
+    @if($item->price)
+        <div class="form-group">
+            <label>Cena:</label>
+            {{ $item->price }} Kč
         </div>
-        @endif
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Množství:</strong>
-                {{ $item->amount }} Ks
-            </div>
+    @endif
+    @if($item->position)
+        <div class="form-group">
+            <label>Umístění:</label>
+            {{ $item->position->name }}
         </div>
-        @if($item->min_amount)
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Minimální množství:</strong>
-                {{ $item->min_amount }} Ks
-            </div>
-        </div>
-        @endif
-        @if($item->price)
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Cena:</strong>
-                {{ $item->price }} Kč
-            </div>
-        </div>
-        @endif
-        @if($item->position)
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Umístění:</strong>
-                    {{ $item->position->name }}
+    @endif
+    @unless($item->categories->isEmpty())
+    <div class="form-group">
+        <label>Kategorie:</label>
+        <ul>
+            @foreach($item->categories as $category)
+                <li>{{$category->name}}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endunless
+
+    <a class="btn btn-warning btn-icon-split"
+       href="{{ route('items.edit',$item->id) }}">
+        <span class="icon text-white-50">
+            <i class="fas fa-edit"></i>
+        </span>
+        <span class="text">Upravit</span>
+    </a>
+
+    <button type="button" class="btn btn-danger btn-icon-split" data-toggle="modal"
+            data-target="#deleteModalForId{{$item->id}}">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+        <span class="text">Smazat</span>
+    </button>
+    <form action="{{ route('items.destroy',$item->id) }}" method="POST">
+        <div class="modal fade" id="deleteModalForId{{$item->id}}" tabindex="-1"
+             role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"
+                            id="exampleModalLabel">{{ __('Smazat?') }}</h5>
+                        <button class="close" type="button" data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Opravdu chcete smazat
+                        položku {{$item->name}}?
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-link" type="button"
+                                data-dismiss="modal">{{ __('Zrušit') }}</button>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" data-toggle="modal"
+                                data-target="#deleteModal">Smazat
+                        </button>
+                    </div>
                 </div>
             </div>
-        @endif
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Kategorie:</strong>
-                <ul>
-                @forelse($item->categories as $category)
-                    <li>{{$category->name}}</li>
-                @empty
-                    <p>
-                        Položka <b>{{$item->name}}</b> nemá přiřazenou žádnou kategorii.
-                    </p>
-                @endforelse
-                </ul>
-            </div>
         </div>
-    </div>
+    </form>
 
 @endsection

@@ -15,6 +15,7 @@ class Item extends Model
         'image',
         'amount',
         'min_amount',
+        'is_enough',
         'price'];
 
     public function categories()

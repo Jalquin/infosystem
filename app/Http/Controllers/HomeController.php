@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -30,6 +30,8 @@ class HomeController extends Controller
             'users' => $users
         ];
 
-        return view('home', compact('widget'));
+        $lowItems = Item::where('is_enough', 0)->get();
+
+        return view('home', compact('widget', 'lowItems'));
     }
 }
