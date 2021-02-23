@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-class SuppliersController extends Controller
+class JobController extends Controller
 {
     //
 }

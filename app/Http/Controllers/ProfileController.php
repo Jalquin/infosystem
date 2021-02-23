@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,12 +17,19 @@ class ProfileController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * @return Application|Factory|View
+     */
     public function index()
     {
         return view('profile');
     }
 
-    public function update(Request $request)
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function update(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => 'required|string|max:255',

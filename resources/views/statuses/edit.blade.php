@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Nová pozice')
+@section('title', 'Upravit status ' . $status->name)
 
 @section('content')
 
-    <h2>Přidat pozici:</h2>
-    <a href="{{ route('positions.index') }}" class="btn btn-secondary btn-icon-split">
+    <h2>Upravit status <b>{{ $status->name }}</b></h2>
+    <a href="{{ route('statuses.index') }}" class="btn btn-secondary btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-arrow-left"></i>
                     </span>
@@ -23,11 +23,13 @@
         </div>
     @endif
 
-    <form action="{{ route('positions.store') }}" method="POST">
+    <form action="{{ route('statuses.update',$status->id) }}" method="POST">
         @csrf
+        @method('PUT')
         <div class="form-group">
             <label for="name">Název:</label>
-            <input id="name" type="text" name="name" class="form-control" placeholder="Název">
+            <input id="name" type="text" name="name" value="{{ $status->name }}" class="form-control"
+                   placeholder="Název">
         </div>
         <button type="submit" class="btn btn-primary btn-icon-split">
             <span class="icon text-white-50">

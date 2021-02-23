@@ -35,8 +35,8 @@
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
-            <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i>
+            <div class="sidebar-brand-icon">
+                <i class="fas fa-globe-europe"></i>
             </div>
             <div class="sidebar-brand-text mx-3">Info System</div>
         </a>
@@ -76,7 +76,12 @@
         </li>
 
         <!-- Divider -->
-        <hr class="sidebar-divider my-0">
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            {{ __('Nastavení') }}
+        </div>
 
         <!-- Nav Item - Depot management -->
         <li class="nav-item">
@@ -91,6 +96,54 @@
                     <h6 class="collapse-header">Nastavení skladu:</h6>
                     <a class="collapse-item" href="{{route('categories.index')}}">Kategorie</a>
                     <a class="collapse-item" href="{{route('positions.index')}}">Umístění</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Job management -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseJob"
+               aria-expanded="false" aria-controls="collapseJob">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Nastavení zakázek</span>
+            </a>
+            <div id="collapseJob" class="collapse" aria-labelledby="headingDepot" data-parent="#accordionSidebar"
+                 style="">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Nastavení zakázek:</h6>
+                    <a class="collapse-item" href="{{route('statuses.index')}}">Statusy</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Person management -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePerson"
+               aria-expanded="false" aria-controls="collapsePerson">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Nastavení osob</span>
+            </a>
+            <div id="collapsePerson" class="collapse" aria-labelledby="headingDepot" data-parent="#accordionSidebar"
+                 style="">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Nastavení osob:</h6>
+                    <a class="collapse-item" href="{{route('roles.index')}}">Role</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Address management -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAddress"
+               aria-expanded="false" aria-controls="collapseAddress">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Nastavení adres</span>
+            </a>
+            <div id="collapseAddress" class="collapse" aria-labelledby="headingDepot" data-parent="#accordionSidebar"
+                 style="">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Nastavení adres:</h6>
+                    <a class="collapse-item" href="{{route('address_types.index')}}">Typy adres</a>
                 </div>
             </div>
         </li>
@@ -120,23 +173,38 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <span class="navbar-text">
-                    <h5><span id="time"></span><br><span id="date"></span></h5>
+                    <span id="time"></span><br><span id="date"></span>
                 </span>
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
-                        @if (Auth::check())
+                        @auth
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                            <span
+                                class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                                 <figure class="img-profile rounded-circle avatar font-weight-bold"
                                         data-initial="{{ Auth::user()->name[0] }}"></figure>
                             </a>
-                        @else
-                            <a href="{{route('home')}}"></a>
-                    @endif
+                        @endauth
+
+                        @guest
+                            <a class="btn btn-primary btn-icon-split"
+                               href="{{ route('login') }}">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                </span>
+                                <span class="text">Přihlásit se</span>
+                            </a>
+                            <a class="btn btn-secondary btn-icon-split"
+                               href="{{ route('register') }}">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-user-plus"></i>
+                                </span>
+                                <span class="text">Registrovat</span>
+                            </a>
+                        @endguest
 
                     <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

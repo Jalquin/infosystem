@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\User;
+use Illuminate\Contracts\Support\Renderable;
 
 class HomeController extends Controller
 {
@@ -20,9 +21,9 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
      */
-    public function index()
+    public function index(): Renderable
     {
         $users = User::count();
 

@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Kategorie ' . $category->name)
+@section('title', 'Typ adresy ' . $addressType->name)
 
 @section('content')
 
-    <h2>Detaily kategorie <b>{{ $category->name }}</b></h2>
-    <a href="{{ route('categories.index') }}" class="btn btn-secondary btn-icon-split">
+    <h2>Detaily typu adresy <b>{{ $addressType->name }}</b></h2>
+    <a href="{{ route('address_types.index') }}" class="btn btn-secondary btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-arrow-left"></i>
                     </span>
@@ -13,7 +13,7 @@
     </a>
     <div class="form-group">
         <label>Název:</label>
-        {{ $category->name }}
+        {{ $addressType->name }}
     </div>
 
 @endsection

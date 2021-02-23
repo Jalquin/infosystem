@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Status;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -11,7 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class CategoryController extends Controller
+class StatusController extends Controller
 {
     public function __construct()
     {
@@ -25,9 +25,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $statuses = Status::all();
 
-        return view('categories.index', compact('categories'));
+        return view('statuses.index', compact('statuses'));
     }
 
     /**
@@ -37,7 +37,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        return view('statuses.create');
     }
 
     /**
@@ -52,65 +52,65 @@ class CategoryController extends Controller
             'name' => 'required',
         ]);
 
-        Category::create($request->all());
+        Status::create($request->all());
 
-        return redirect()->route('categories.index')
-            ->with('success', 'Úspěšně přidána kategorie ' . $request->name);
+        return redirect()->route('statuses.index')
+            ->with('success', 'Úspěšně přidán status ' . $request->name);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Category $category
+     * @param Status $status
      * @return Application|Factory|View|Response
      */
-    public function show(Category $category)
+    public function show(Status $status)
     {
-        return view('categories.show', compact('category'));
+        return view('statuses.show', compact('status'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Category $category
+     * @param Status $status
      * @return Application|Factory|View|Response
      */
-    public function edit(Category $category)
+    public function edit(Status $status)
     {
-        return view('categories.edit', compact('category'));
+        return view('statuses.edit', compact('status'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param Category $category
+     * @param Status $status
      * @return RedirectResponse
      */
-    public function update(Request $request, Category $category): RedirectResponse
+    public function update(Request $request, Status $status): RedirectResponse
     {
         $request->validate([
             'name' => 'required'
         ]);
 
-        $category->update($request->all());
+        $status->update($request->all());
 
-        return redirect()->route('categories.index')
-            ->with('success', 'Úspěšně upravena kategorie ' . $category->name);
+        return redirect()->route('statuses.index')
+            ->with('success', 'Úspěšně upraven status ' . $status->name);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Category $category
+     * @param Status $status
      * @return RedirectResponse
      * @throws Exception
      */
-    public function destroy(Category $category): RedirectResponse
+    public function destroy(Status $status): RedirectResponse
     {
-        $category->delete();
+        $status->delete();
 
-        return redirect()->route('categories.index')
-            ->with('success', 'Úspěšně smazána kategorie ' . $category->name);
+        return redirect()->route('statuses.index')
+            ->with('success', 'Úspěšně smazán status ' . $status->name);
     }
 }

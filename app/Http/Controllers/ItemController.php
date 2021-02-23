@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Item;
 use App\Models\Position;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
@@ -19,7 +24,8 @@ class ItemController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @param Request $request
+     * @return Application|Factory|View|Response
      */
     public function index(Request $request)
     {
@@ -51,7 +57,7 @@ class ItemController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Application|Factory|View|Response
      */
     public function create()
     {
@@ -64,9 +70,9 @@ class ItemController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $image = null;
         $request->validate([
@@ -111,7 +117,7 @@ class ItemController extends Controller
      * Display the specified resource.
      *
      * @param Item $item
-     * @return Response
+     * @return Application|Factory|View|Response
      */
     public function show(Item $item)
     {
@@ -124,7 +130,7 @@ class ItemController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Item $item
-     * @return Response
+     * @return Application|Factory|View|Response
      */
     public function edit(Item $item)
     {
@@ -138,9 +144,9 @@ class ItemController extends Controller
      *
      * @param Request $request
      * @param Item $item
-     * @return Response
+     * @return RedirectResponse
      */
-    public function update(Request $request, Item $item)
+    public function update(Request $request, Item $item): RedirectResponse
     {
         $image = $item->image;
         $request->validate([
@@ -189,9 +195,10 @@ class ItemController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Item $item
-     * @return Response
+     * @return RedirectResponse
+     * @throws Exception
      */
-    public function destroy(Item $item)
+    public function destroy(Item $item): RedirectResponse
     {
         $item->delete();
         Storage::delete('/public/items_img/' . $item->image);
@@ -200,7 +207,7 @@ class ItemController extends Controller
             ->with('success', 'Úspěšně smazána pložka ' . $item->name);
     }
 
-    public function addAmount($id, Item $item)
+    public function addAmount($id): RedirectResponse
     {
         $item = Item::findOrFail($id);
         $amount = $item->amount + 1;
@@ -216,7 +223,7 @@ class ItemController extends Controller
             ->with('success', 'Úspěšně přidáno množství položce ' . $item->name . '. Konečné množství je : ' . $item->amount);
     }
 
-    public function subtractAmount($id, Item $item)
+    public function subtractAmount($id): RedirectResponse
     {
         $item = Item::findOrFail($id);
         $amount = $item->amount - 1;

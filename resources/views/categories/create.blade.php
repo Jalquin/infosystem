@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Přidání nové kategorie')
+@section('title', 'Nová kategorie')
 
 @section('content')
 
@@ -22,6 +22,7 @@
             </ul>
         </div>
     @endif
+
     <form action="{{ route('categories.store') }}" method="POST">
         @csrf
         <div class="form-group">

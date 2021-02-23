@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Detaily položky ' . $item->name)
+@section('title', 'Položka ' . $item->name)
 
 @section('content')
 

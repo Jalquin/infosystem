@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Přidání nové položky skladu')
+@section('title', 'Nová položka skladu')
 
 @section('css')
     <link rel="stylesheet"

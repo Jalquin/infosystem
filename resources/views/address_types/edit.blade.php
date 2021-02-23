@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Nová pozice')
+@section('title', 'Upravit kategorii ' . $addressType->name)
 
 @section('content')
 
-    <h2>Přidat pozici:</h2>
-    <a href="{{ route('positions.index') }}" class="btn btn-secondary btn-icon-split">
+    <h2>Upravit typ adresy <b>{{ $addressType->name }}</b></h2>
+    <a href="{{ route('address_types.index') }}" class="btn btn-secondary btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-arrow-left"></i>
                     </span>
@@ -23,11 +23,13 @@
         </div>
     @endif
 
-    <form action="{{ route('positions.store') }}" method="POST">
+    <form action="{{ route('address_types.update',$addressType->id) }}" method="POST">
         @csrf
+        @method('PUT')
         <div class="form-group">
             <label for="name">Název:</label>
-            <input id="name" type="text" name="name" class="form-control" placeholder="Název">
+            <input id="name" type="text" name="name" value="{{ $addressType->name }}" class="form-control"
+                   placeholder="Název">
         </div>
         <button type="submit" class="btn btn-primary btn-icon-split">
             <span class="icon text-white-50">

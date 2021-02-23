@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Detaily kategorie ' . $position->name)
+@section('title', 'Pozice ' . $position->name)
 
 @section('content')
 

@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Position;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class PositionController extends Controller
 {
@@ -15,7 +21,7 @@ class PositionController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View|Response
      */
     public function index()
     {
@@ -27,7 +33,7 @@ class PositionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View|Response
      */
     public function create()
     {
@@ -37,10 +43,10 @@ class PositionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => 'required',
@@ -55,8 +61,8 @@ class PositionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Position $position
-     * @return \Illuminate\Http\Response
+     * @param Position $position
+     * @return Application|Factory|View|Response
      */
     public function show(Position $position)
     {
@@ -66,8 +72,8 @@ class PositionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\Position $position
-     * @return \Illuminate\Http\Response
+     * @param Position $position
+     * @return Application|Factory|View|Response
      */
     public function edit(Position $position)
     {
@@ -77,11 +83,11 @@ class PositionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Position $position
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Position $position
+     * @return RedirectResponse
      */
-    public function update(Request $request, Position $position)
+    public function update(Request $request, Position $position): RedirectResponse
     {
         $request->validate([
             'name' => 'required'
@@ -96,10 +102,11 @@ class PositionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Position $position
-     * @return \Illuminate\Http\Response
+     * @param Position $position
+     * @return RedirectResponse
+     * @throws Exception
      */
-    public function destroy(Position $position)
+    public function destroy(Position $position): RedirectResponse
     {
         $position->delete();
 

@@ -4,8 +4,8 @@
 
 @section('content')
 
-    <h2>Přidat pozici:</h2>
-    <a href="{{ route('positions.index') }}" class="btn btn-secondary btn-icon-split">
+    <h2>Přidat roli:</h2>
+    <a href="{{ route('roles.index') }}" class="btn btn-secondary btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-arrow-left"></i>
                     </span>
@@ -23,7 +23,7 @@
         </div>
     @endif
 
-    <form action="{{ route('positions.store') }}" method="POST">
+    <form action="{{ route('roles.store') }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="name">Název:</label>

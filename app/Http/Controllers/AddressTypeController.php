@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\AddressType;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -11,7 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class CategoryController extends Controller
+class AddressTypeController extends Controller
 {
     public function __construct()
     {
@@ -25,9 +25,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $addressTypes = AddressType::all();
 
-        return view('categories.index', compact('categories'));
+        return view('address_types.index', compact('addressTypes'));
     }
 
     /**
@@ -37,7 +37,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        return view('address_types.create');
     }
 
     /**
@@ -52,65 +52,65 @@ class CategoryController extends Controller
             'name' => 'required',
         ]);
 
-        Category::create($request->all());
+        AddressType::create($request->all());
 
-        return redirect()->route('categories.index')
-            ->with('success', 'Úspěšně přidána kategorie ' . $request->name);
+        return redirect()->route('address_types.index')
+            ->with('success', 'Úspěšně přidán typ adresy ' . $request->name);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Category $category
+     * @param AddressType $addressType
      * @return Application|Factory|View|Response
      */
-    public function show(Category $category)
+    public function show(AddressType $addressType)
     {
-        return view('categories.show', compact('category'));
+        return view('address_types.show', compact('addressType'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Category $category
+     * @param AddressType $addressType
      * @return Application|Factory|View|Response
      */
-    public function edit(Category $category)
+    public function edit(AddressType $addressType)
     {
-        return view('categories.edit', compact('category'));
+        return view('address_types.edit', compact('addressType'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param Category $category
+     * @param AddressType $addressType
      * @return RedirectResponse
      */
-    public function update(Request $request, Category $category): RedirectResponse
+    public function update(Request $request, AddressType $addressType): RedirectResponse
     {
         $request->validate([
             'name' => 'required'
         ]);
 
-        $category->update($request->all());
+        $addressType->update($request->all());
 
-        return redirect()->route('categories.index')
-            ->with('success', 'Úspěšně upravena kategorie ' . $category->name);
+        return redirect()->route('address_types.index')
+            ->with('success', 'Úspěšně upraven typ adresy ' . $addressType->name);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Category $category
+     * @param AddressType $addressType
      * @return RedirectResponse
      * @throws Exception
      */
-    public function destroy(Category $category): RedirectResponse
+    public function destroy(AddressType $addressType): RedirectResponse
     {
-        $category->delete();
+        $addressType->delete();
 
-        return redirect()->route('categories.index')
-            ->with('success', 'Úspěšně smazána kategorie ' . $category->name);
+        return redirect()->route('address_types.index')
+            ->with('success', 'Úspěšně smazán typ adresy ' . $addressType->name);
     }
 }
