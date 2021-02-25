@@ -31,8 +31,8 @@
     <form action="{{ route('jobs.store') }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="number">Číslo zakázky:</label>
-            <input id="number" type="text" name="number" class="form-control" placeholder="Číslo zakázky" required>
+            <label for="number">Číslo objednávky:</label>
+            <input id="number" type="text" name="number" class="form-control" placeholder="Číslo objednávky" required>
         </div>
         <div class="form-group">
             <label for="name">Název:</label>
@@ -45,6 +45,11 @@
         <div class="form-group">
             <label for="description">Popis:</label>
             <textarea id="description" rows="10" class="form-control" name="description" placeholder="Popis"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="tender_number">Číslo nabídky:</label>
+            <input id="tender_number" type="text" name="tender_number" class="form-control"
+                   placeholder="Číslo nabídky">
         </div>
         <div class="form-group">
             <label for="invoice_number">Číslo faktury:</label>
@@ -123,8 +128,8 @@
             }), statusSelect = new Choices('#status-select', {
                 removeItemButton: true,
                 maxItemCount: 1,
-                searchResultLimit: 5,
-                renderChoiceLimit: 5
+                searchResultLimit: 8,
+                renderChoiceLimit: 8
             });
         });
     </script>

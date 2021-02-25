@@ -12,6 +12,7 @@ use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -30,16 +31,19 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
 Auth::routes();
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
 Route::get('/blank', function () {
     return view('blank');
 })->name('blank');
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::resource('/users', UserController::class);
+
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
 Route::get('/items/edit/{id}/add', [ItemController::class, 'addAmount'])->name('items.amount.add');
 Route::get('/items/edit/{id}/subtract', [ItemController::class, 'subtractAmount'])->name('items.amount.subtract');

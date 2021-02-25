@@ -26,16 +26,10 @@ class HomeController extends Controller
      */
     public function index(): Renderable
     {
-        $users = User::count();
-
-        $widget = [
-            'users' => $users
-        ];
-
-        $jobs = Job::whereIn('status_id', [1,2,3,4,5])->get();
+        $jobs = Job::whereIn('status_id', [1,2,3,4,5,6])->get();
 
         $lowItems = Item::where('is_enough', 0)->get();
 
-        return view('home', compact('widget', 'lowItems','jobs'));
+        return view('home', compact( 'lowItems','jobs'));
     }
 }

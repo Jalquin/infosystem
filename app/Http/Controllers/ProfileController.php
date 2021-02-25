@@ -36,10 +36,15 @@ class ProfileController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,' . Auth::user()->id,
         ]);
 
-
+        $admin = null;
+        if($request->admin == 'on')
+            $admin = 1;
+        else
+            $admin = 0;
         $user = User::findOrFail(Auth::user()->id);
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $user->admin = $admin;
 
         $user->save();
         session()->flash('success', 'Údaje změněny');

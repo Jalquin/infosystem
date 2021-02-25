@@ -13,9 +13,16 @@
     </a>
 
     <dl class="row mt-1 border">
-        <dt class="col-sm-3">Číslo zakázky:</dt>
+        @if($job->tender_number)
+            <dt class="col-sm-3">Číslo nabídky:</dt>
+            <dd class="col-sm-9">{{ $job->tender_number }}</dd>
+        @endif
+        <dt class="col-sm-3">Číslo objednávky:</dt>
         <dd class="col-sm-9">{{ $job->number }}</dd>
-
+        @if($job->invoice_number)
+            <dt class="col-sm-3">Číslo faktury:</dt>
+            <dd class="col-sm-9">{{ $job->invoice_number }}</dd>
+        @endif
         <dt class="col-sm-3">Název:</dt>
         <dd class="col-sm-9">{{ $job->name }}</dd>
         @if($job->date)
@@ -23,12 +30,10 @@
             <dd class="col-sm-9">{{ $job->date }}</dd>
         @endif
         @if($job->description)
-            <dt class="col-sm-3">Popis:</dt>
-            <dd class="col-sm-9">{{ $job->description }}</dd>
-        @endif
-        @if($job->invoice_number)
-            <dt class="col-sm-3">Číslo faktury:</dt>
-            <dd class="col-sm-9">{{ $job->invoice_number }}</dd>
+                <dt class="col-sm-3">Popis:</dt>
+                <dd class="col-sm-9">
+                    <textarea rows="10" style="min-width: 100%" readonly>{{ $job->description }}</textarea>
+                </dd>
         @endif
         <dt class="col-sm-3">Status:</dt>
         <dd class="col-sm-9">{{ $job->status->name }}</dd>

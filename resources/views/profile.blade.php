@@ -67,12 +67,11 @@
 
                         <h6 class="heading-small text-muted mb-4">Informace o uživateli</h6>
 
-                        <div class="pl-lg-4">
+                        <div class="pl-lg-4 mb-4">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group focused">
-                                        <label class="form-control-label" for="name">Jméno<span
-                                                class="small text-danger">*</span></label>
+                                        <label class="form-control-label" for="name">Jméno</label>
                                         <input type="text" id="name" class="form-control" name="name" placeholder="Name"
                                                value="{{ old('name', Auth::user()->name) }}">
                                     </div>
@@ -82,15 +81,21 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="email">Email<span
-                                                class="small text-danger">*</span></label>
+                                        <label class="form-control-label" for="email">Email</label>
                                         <input type="email" id="email" class="form-control" name="email"
                                                placeholder="example@example.com"
                                                value="{{ old('email', Auth::user()->email) }}">
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" name="admin" id="admin" @if(Auth::user()->admin == 1) checked @endif>
+                                        <label class="form-check-label" for="admin">Admin</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Button -->

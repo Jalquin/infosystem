@@ -34,7 +34,9 @@
                 <table class="dataTables_wrapper dt-bootstrap4" id="myTable">
                     <thead>
                     <tr>
-                        <th>Číslo zakázky</th>
+                        <th>Číslo nabídky</th>
+                        <th>Číslo objednávky</th>
+                        <th>Číslo faktury</th>
                         <th>Název</th>
                         <th>Status</th>
                         <th>Akce</th>
@@ -42,7 +44,9 @@
                     </thead>
                     <tfoot>
                     <tr>
-                        <th>Číslo zakázky</th>
+                        <th>Číslo nabídky</th>
+                        <th>Číslo objednávky</th>
+                        <th>Číslo faktury</th>
                         <th>Název</th>
                         <th>Status</th>
                         <th>Akce</th>
@@ -52,7 +56,9 @@
 
                     @foreach ($jobs as $job)
                         <tr>
+                            <td>{{ $job->tender_number }}</td>
                             <td>{{ $job->number }}</td>
+                            <td>{{ $job->invoice_number }}</td>
                             <td>{{ $job->name }}</td>
                             <td>{{ $job->status->name }}</td>
                             <td>

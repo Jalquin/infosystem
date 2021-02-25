@@ -102,91 +102,101 @@
             </a>
         </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
+        @if(Auth::user()->admin == 1)
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            {{ __('Nastavení') }}
-        </div>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
-               aria-expanded="false" aria-controls="collapseSettings">
-                <i class="fas fa-cogs"></i>
-                <span>Nastavení</span>
-            </a>
-            <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings"
-                 data-parent="#accordionSidebar"
-                 style="">
-
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <!-- Nav Item - Depot management -->
-                    <a class="collapse-item" href="#" data-toggle="collapse" data-target="#collapseDepot"
-                       aria-expanded="false" aria-controls="collapseDepot">
-                        <i class="fas fa-cog"></i>
-                        <i class="fas fa-warehouse"></i>
-                        <span>Nastavení skladu</span>
-                    </a>
-
-                    <!-- Nav Item - Job management -->
-                    <a class="collapse-item" href="#" data-toggle="collapse" data-target="#collapseJob"
-                       aria-expanded="false" aria-controls="collapseJob">
-                        <i class="fas fa-cog"></i>
-                        <i class="fas fa-hammer"></i>
-                        <span>Nastavení zakázek</span>
-                    </a>
-
-                    <!-- Nav Item - Person management -->
-                    <a class="collapse-item" href="#" data-toggle="collapse" data-target="#collapsePerson"
-                       aria-expanded="false" aria-controls="collapsePerson">
-                        <i class="fas fa-cog"></i>
-                        <i class="fas fa-user-friends"></i>
-                        <span>Nastavení osob</span>
-                    </a>
-
-                    <!-- Nav Item - Address management -->
-                    <a class="collapse-item" href="#" data-toggle="collapse" data-target="#collapseAddress"
-                       aria-expanded="false" aria-controls="collapseAddress">
-                        <i class="fas fa-cog"></i>
-                        <i class="fas fa-address-card"></i>
-                        <span>Nastavení adres</span>
-                    </a>
-                </div>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                {{ __('Nastavení') }}
             </div>
-            <div id="collapseDepot" class="collapse" aria-labelledby="headingDepotSettings"
-                 data-parent="#accordionSidebar"
-                 style="">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Nastavení skladu:</h6>
-                    <a class="collapse-item" href="{{route('categories.index')}}">Kategorie</a>
-                    <a class="collapse-item" href="{{route('positions.index')}}">Umístění</a>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('users.index') }}">
+                    <i class="fas fa-user-cog"></i>
+                    <span>{{ __('Uživatelé') }}</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
+                   aria-expanded="false" aria-controls="collapseSettings">
+                    <i class="fas fa-cogs"></i>
+                    <span>Nastavení</span>
+                </a>
+                <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings"
+                     data-parent="#accordionSidebar"
+                     style="">
+
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <!-- Nav Item - Depot management -->
+                        <a class="collapse-item" href="#" data-toggle="collapse" data-target="#collapseDepot"
+                           aria-expanded="false" aria-controls="collapseDepot">
+                            <i class="fas fa-cog"></i>
+                            <i class="fas fa-warehouse"></i>
+                            <span>Nastavení skladu</span>
+                        </a>
+
+                        <!-- Nav Item - Job management -->
+                        <a class="collapse-item" href="#" data-toggle="collapse" data-target="#collapseJob"
+                           aria-expanded="false" aria-controls="collapseJob">
+                            <i class="fas fa-cog"></i>
+                            <i class="fas fa-hammer"></i>
+                            <span>Nastavení zakázek</span>
+                        </a>
+
+                        <!-- Nav Item - Person management -->
+                        <a class="collapse-item" href="#" data-toggle="collapse" data-target="#collapsePerson"
+                           aria-expanded="false" aria-controls="collapsePerson">
+                            <i class="fas fa-cog"></i>
+                            <i class="fas fa-user-friends"></i>
+                            <span>Nastavení osob</span>
+                        </a>
+
+                        <!-- Nav Item - Address management -->
+                        <a class="collapse-item" href="#" data-toggle="collapse" data-target="#collapseAddress"
+                           aria-expanded="false" aria-controls="collapseAddress">
+                            <i class="fas fa-cog"></i>
+                            <i class="fas fa-address-card"></i>
+                            <span>Nastavení adres</span>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div id="collapseJob" class="collapse" aria-labelledby="headingJobSettings" data-parent="#accordionSidebar"
-                 style="">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Nastavení zakázek:</h6>
-                    <a class="collapse-item" href="{{route('statuses.index')}}">Statusy</a>
+                <div id="collapseDepot" class="collapse" aria-labelledby="headingDepotSettings"
+                     data-parent="#accordionSidebar"
+                     style="">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Nastavení skladu:</h6>
+                        <a class="collapse-item" href="{{route('categories.index')}}">Kategorie</a>
+                        <a class="collapse-item" href="{{route('positions.index')}}">Umístění</a>
+                    </div>
                 </div>
-            </div>
-            <div id="collapsePerson" class="collapse" aria-labelledby="headingPersonSettings"
-                 data-parent="#accordionSidebar"
-                 style="">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Nastavení osob:</h6>
-                    <a class="collapse-item" href="{{route('roles.index')}}">Role</a>
+                <div id="collapseJob" class="collapse" aria-labelledby="headingJobSettings" data-parent="#accordionSidebar"
+                     style="">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Nastavení zakázek:</h6>
+                        <a class="collapse-item" href="{{route('statuses.index')}}">Statusy</a>
+                    </div>
                 </div>
-            </div>
-            <div id="collapseAddress" class="collapse" aria-labelledby="headingAddressSettings"
-                 data-parent="#accordionSidebar"
-                 style="">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Nastavení adres:</h6>
-                    <a class="collapse-item" href="{{route('address_types.index')}}">Typy adres</a>
+                <div id="collapsePerson" class="collapse" aria-labelledby="headingPersonSettings"
+                     data-parent="#accordionSidebar"
+                     style="">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Nastavení osob:</h6>
+                        <a class="collapse-item" href="{{route('roles.index')}}">Role</a>
+                    </div>
                 </div>
-            </div>
-        </li>
+                <div id="collapseAddress" class="collapse" aria-labelledby="headingAddressSettings"
+                     data-parent="#accordionSidebar"
+                     style="">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Nastavení adres:</h6>
+                        <a class="collapse-item" href="{{route('address_types.index')}}">Typy adres</a>
+                    </div>
+                </div>
+            </li>
+        @endif
+
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 

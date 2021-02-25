@@ -32,9 +32,9 @@
         @csrf
         @method('PUT')
         <div class="form-group">
-            <label for="number">Číslo zakázky:</label>
+            <label for="number">Číslo objednávky:</label>
             <input id="number" type="text" name="number" value="{{ $job->number }}" class="form-control"
-                   placeholder="Číslo zakázky" required>
+                   placeholder="Číslo objednávky" required>
         </div>
         <div class="form-group">
             <label for="name">Název:</label>
@@ -51,6 +51,11 @@
                       placeholder="Popis">{{ $job->description }}</textarea>
         </div>
         <div class="form-group">
+            <label for="tender_number">Číslo nabídky:</label>
+            <input id="tender_number" type="text" name="tender_number" value="{{ $job->tender_number }}"
+                class="form-control" placeholder="Číslo nabídky">
+        </div>
+        <div class="form-group">
             <label for="invoice_number">Číslo faktury:</label>
             <input id="invoice_number" type="number" name="invoice_number" value="{{ $job->invoice_number }}"
                    class="form-control" placeholder="Číslo faktury">
@@ -64,7 +69,7 @@
                 </option>
                 @foreach($statuses as $status)
                     <option value="{{$status->id}}"
-                            @if($job->status_id == $status->id ) selected @endif>{{$status->name}}</option>
+                            @if($job->status_id == $status->id ) selected @endif>{{$status->id.' : '.$status->name}}</option>
                 @endforeach
             </select>
         </div>
@@ -132,8 +137,8 @@
             }), statusSelect = new Choices('#status-select', {
                 removeItemButton: true,
                 maxItemCount: 1,
-                searchResultLimit: 5,
-                renderChoiceLimit: 5
+                searchResultLimit: 8,
+                renderChoiceLimit: 8
             });
         });
     </script>

@@ -20,6 +20,7 @@ class Job extends Model
         'name',
         'date',
         'description',
+        'tender_number',
         'invoice_number'
     ];
 

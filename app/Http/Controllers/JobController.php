@@ -61,16 +61,11 @@ class JobController extends Controller
             'name' => 'required',
             'date',
             'description',
+            'tender_number',
             'invoice_number'
         ]);
 
-        $job = Job::create([
-            'number' => $request->number,
-            'name' => $request->name,
-            'date' => $request->date,
-            'description' => $request->description,
-            'invoice_number' => $request->invoice_number
-        ]);
+        $job = Job::create($request->all());
 
         $job->status()->associate($request->status_id);
         $job->save();
@@ -127,6 +122,7 @@ class JobController extends Controller
             'name' => 'required',
             'date',
             'description',
+            'tender_number',
             'invoice_number'
         ]);
 
