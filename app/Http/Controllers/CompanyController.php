@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use App\Models\AddressType;
 use App\Models\Company;
 use App\Models\Person;
 use Exception;
@@ -41,7 +42,8 @@ class CompanyController extends Controller
     {
         $addresses = Address::all();
         $people = Person::all();
-        return view('companies.create', compact('addresses','people'));
+        $addressTypes = AddressType::all();
+        return view('companies.create', compact('addresses','people','addressTypes'));
     }
 
     /**
@@ -59,10 +61,29 @@ class CompanyController extends Controller
             'note'
         ]);
 
+        if($request->new_address == 'on'){
+            $request->validate([
+                'street'=> 'required',
+                'number',
+                'zip',
+                'city'=> 'required'
+            ]);
+        }
+
         $company = Company::create($request->all());
 
         $company->people()->attach($request->people);
         $company->addresses()->attach($request->addresses);
+
+        if($request->new_address == 'on'){
+
+            $address = Address::create($request->all());
+
+            $address->addressType()->associate($request->address_type_id);
+            $address->save();
+
+            $address->companies()->attach($company);
+        }
 
         return redirect()->route('companies.index')
             ->with('success', 'Úspěšně přidána firma '.$request->name);
@@ -91,7 +112,8 @@ class CompanyController extends Controller
     {
         $addresses = Address::all();
         $people = Person::all();
-        return view('companies.edit', compact('company','addresses','people'));
+        $addressTypes = AddressType::all();
+        return view('companies.edit', compact('company','addresses','people','addressTypes'));
     }
 
     /**
@@ -110,10 +132,29 @@ class CompanyController extends Controller
             'note'
         ]);
 
+        if($request->new_address == 'on'){
+            $request->validate([
+                'street'=> 'required',
+                'number',
+                'zip',
+                'city'=> 'required'
+            ]);
+        }
+
         $company->update($request->all());
 
         $company->people()->sync($request->people);
         $company->addresses()->sync($request->addresses);
+
+        if($request->new_address == 'on'){
+
+            $address = Address::create($request->all());
+
+            $address->addressType()->associate($request->address_type_id);
+            $address->save();
+
+            $address->companies()->attach($company);
+        }
 
         return redirect()->route('companies.index')
             ->with('success', 'Úspěšně upravena firma '.$company->name);

@@ -51,7 +51,7 @@
                     @foreach ($people as $person)
                         <tr>
                             <td>{{ $person->name }}</td>
-                            <td>{{ $person->role->name }}</td>
+                            <td>@if($person->role){{ $person->role->name }}@endif</td>
                             <td>
                                 <form action="{{ route('people.destroy',$person->id) }}" method="POST">
 

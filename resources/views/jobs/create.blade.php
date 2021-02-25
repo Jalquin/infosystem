@@ -76,6 +76,40 @@
             </select>
         </div>
 
+        <div class="form-check mb-4">
+            <input id="new_address" type="checkbox" name="new_address" class="form-check-input" data-toggle="collapse" data-target="#new_address_collapse">
+            <label class="form-check-label" for="new_address">Nová adresa</label>
+        </div>
+
+        <div class="collapse border" id="new_address_collapse">
+            <div class="form-group">
+                <label for="name">Ulice:</label>
+                <input id="name" type="text" name="street" class="form-control" placeholder="Ulice">
+            </div>
+            <div class="form-group">
+                <label for="number">Číslo:</label>
+                <input id="number" type="text" name="number" class="form-control" placeholder="Číslo">
+            </div>
+            <div class="form-group">
+                <label for="city">Obec/Město:</label>
+                <input id="city" type="text" name="city" class="form-control" placeholder="Obec/Město">
+            </div>
+            <div class="form-group">
+                <label for="zip">PSČ:</label>
+                <input id="zip" type="text" name="zip" class="form-control" placeholder="PSČ">
+            </div>
+
+            <div class="form-group">
+                <label for="address-type-select">Typ adresy:</label>
+                <select name="address_type_id" id="address-type-select">
+                    <option value="" selected disabled hidden>Zvolte typ adresy</option>
+                    @foreach($addressTypes as $addressType)
+                        <option value="{{$addressType->id}}">{{$addressType->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+
         <div class="form-group">
             <label for="person-select-multiple">Osoby:</label>
             <select name="people[]" id="person-select-multiple" placeholder="Zvolte osoby" multiple>
@@ -113,6 +147,11 @@
             const addressSelectMultiple = new Choices('#address-select-multiple', {
                 removeItemButton: true,
                 maxItemCount: 5,
+                searchResultLimit: 5,
+                renderChoiceLimit: 5
+            }), addressTypeSelect = new Choices('#address-type-select', {
+                removeItemButton: true,
+                maxItemCount: 1,
                 searchResultLimit: 5,
                 renderChoiceLimit: 5
             }), personSelectMultiple = new Choices('#person-select-multiple', {

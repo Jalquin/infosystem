@@ -104,7 +104,7 @@
                 <label>Osoby:</label>
                 <ul>
                     @foreach($address->people as $person)
-                        <li><a href="{{route('people.show', $job->id)}}">{{$person->name}}</a></li>
+                        <li><a href="{{route('people.show', $person->id)}}">{{$person->name}}</a></li>
                     @endforeach
                 </ul>
             </div>
@@ -115,7 +115,7 @@
                 <label>Firmy:</label>
                 <ul>
                     @foreach($address->companies as $company)
-                        <li><a href="{{route('companies.show', $job->id)}}">{{$company->number}}</a></li>
+                        <li><a href="{{route('companies.show', $company->id)}}">{{$company->name}}</a></li>
                     @endforeach
                 </ul>
             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use App\Models\AddressType;
 use App\Models\Item;
 use App\Models\Job;
 use App\Models\Person;
@@ -45,7 +46,8 @@ class JobController extends Controller
         $items = Item::all();
         $addresses = Address::all();
         $people = Person::all();
-        return view('jobs.create', compact('statuses','items','addresses','people'));
+        $addressTypes = AddressType::all();
+        return view('jobs.create', compact('statuses','items','addresses','people','addressTypes'));
     }
 
     /**
@@ -65,12 +67,32 @@ class JobController extends Controller
             'invoice_number'
         ]);
 
+        if($request->new_address == 'on'){
+            $request->validate([
+                'street'=> 'required',
+                'number',
+                'zip',
+                'city'=> 'required'
+            ]);
+        }
+
         $job = Job::create($request->all());
 
         $job->status()->associate($request->status_id);
         $job->save();
 
         $job->addresses()->attach($request->addresses);
+
+        if($request->new_address == 'on'){
+
+            $address = Address::create($request->all());
+
+            $address->addressType()->associate($request->address_type_id);
+            $address->save();
+
+            $address->jobs()->attach($job);
+        }
+
         $job->people()->attach($request->people);
         $job->items()->attach($request->items);
 
@@ -105,7 +127,8 @@ class JobController extends Controller
         $items = Item::all();
         $addresses = Address::all();
         $people = Person::all();
-        return view('jobs.edit', compact('job','statuses','items','addresses','people'));
+        $addressTypes = AddressType::all();
+        return view('jobs.edit', compact('job','statuses','items','addresses','people','addressTypes'));
     }
 
     /**
@@ -126,12 +149,32 @@ class JobController extends Controller
             'invoice_number'
         ]);
 
+        if($request->new_address == 'on'){
+            $request->validate([
+                'street'=> 'required',
+                'number',
+                'zip',
+                'city'=> 'required'
+            ]);
+        }
+
         $job->update($request->all());
 
         $job->status()->associate($request->status_id);
         $job->save();
 
         $job->addresses()->sync($request->addresses);
+
+        if($request->new_address == 'on'){
+
+            $address = Address::create($request->all());
+
+            $address->addressType()->associate($request->address_type_id);
+            $address->save();
+
+            $address->jobs()->attach($job);
+        }
+
         $job->people()->sync($request->people);
         $job->items()->sync($request->items);
 

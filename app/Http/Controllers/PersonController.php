@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use App\Models\AddressType;
 use App\Models\Company;
 use App\Models\Job;
 use App\Models\Person;
@@ -45,7 +46,8 @@ class PersonController extends Controller
         $companies = Company::all();
         $jobs = Job::all();
         $roles = Role::all();
-        return view('people.create', compact('addresses', 'companies','jobs','roles'));
+        $addressTypes = AddressType::all();
+        return view('people.create', compact('addresses', 'companies','jobs','roles','addressTypes'));
     }
 
     /**
@@ -63,6 +65,15 @@ class PersonController extends Controller
             'note'
         ]);
 
+        if($request->new_address == 'on'){
+            $request->validate([
+                'street'=> 'required',
+                'number',
+                'zip',
+                'city'=> 'required'
+            ]);
+        }
+
         $person = Person::create($request->all());
 
         $person->role()->associate($request->role_id);
@@ -70,6 +81,17 @@ class PersonController extends Controller
 
         $person->companies()->attach($request->companies);
         $person->addresses()->attach($request->addresses);
+
+        if($request->new_address == 'on'){
+
+            $address = Address::create($request->all());
+
+            $address->addressType()->associate($request->address_type_id);
+            $address->save();
+
+            $address->people()->attach($person);
+        }
+
         $person->jobs()->attach($request->jobs);
 
         return redirect()->route('people.index')
@@ -103,7 +125,8 @@ class PersonController extends Controller
         $companies = Company::all();
         $jobs = Job::all();
         $roles = Role::all();
-        return view('people.edit', compact('person','addresses', 'companies','jobs','roles'));
+        $addressTypes = AddressType::all();
+        return view('people.edit', compact('person','addresses', 'companies','jobs','roles','addressTypes'));
     }
 
     /**
@@ -122,6 +145,15 @@ class PersonController extends Controller
             'note'
         ]);
 
+        if($request->new_address == 'on'){
+            $request->validate([
+                'street'=> 'required',
+                'number',
+                'zip',
+                'city'=> 'required'
+            ]);
+        }
+
         $person->update($request->all());
 
         $person->role()->associate($request->role_id);
@@ -129,6 +161,17 @@ class PersonController extends Controller
 
         $person->companies()->sync($request->companies);
         $person->addresses()->sync($request->addresses);
+
+        if($request->new_address == 'on'){
+
+            $address = Address::create($request->all());
+
+            $address->addressType()->associate($request->address_type_id);
+            $address->save();
+
+            $address->people()->attach($person);
+        }
+
         $person->jobs()->sync($request->jobs);
 
         return redirect()->route('people.index')
@@ -146,7 +189,7 @@ class PersonController extends Controller
     {
         $person->delete();
 
-        return redirect()->route('positions.index')
+        return redirect()->route('people.index')
             ->with('success', 'Úspěšně smazána osoba '.$person->name);
     }
 }
