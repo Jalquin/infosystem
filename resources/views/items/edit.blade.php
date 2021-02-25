@@ -64,6 +64,7 @@
             <input id="price" type="number" name="price" value="{{$item->price}}" class="form-control"
                    placeholder="Cena">
         </div>
+
         <div class="form-group">
             <label for="category-select-multiple">Kategorie:</label>
             <select name="categories[]" id="category-select-multiple" placeholder="Zvolte až 5 kategorií" multiple>
@@ -73,17 +74,19 @@
                 @endforeach
             </select>
         </div>
+
         <div class="form-group">
             <label for="position-select">Umístění:</label>
             <select name="position_id" id="position-select">
-                @if($item->position_id == null )
-                    <option value="" selected disabled hidden>Zvolte umístění</option> @endif
+                <option value="" @if($item->position_id == null) selected @endif disabled hidden>Zvolte umístění
+                </option>
                 @foreach($positions as $position)
                     <option value="{{$position->id}}"
                             @if($item->position_id == $position->id ) selected @endif>{{$position->name}}</option>
                 @endforeach
             </select>
         </div>
+
         <button type="submit" class="btn btn-primary btn-icon-split">
             <span class="icon text-white-50">
                 <i class="fas fa-save"></i>

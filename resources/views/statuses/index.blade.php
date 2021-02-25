@@ -17,12 +17,6 @@
         </div>
     @endif
 
-    @if (session('status'))
-        <div class="alert alert-success border-left-success" role="alert">
-            {{ session('status') }}
-        </div>
-    @endif
-
     <h1 class="h3 mb-2 text-gray-800">Zakázky - Statusy</h1>
     <a class="btn btn-success btn-icon-split mb-1" href="{{ route('statuses.create') }}">
         <span class="icon text-white-50">
@@ -40,12 +34,14 @@
                 <table class="dataTables_wrapper dt-bootstrap4" id="myTable">
                     <thead>
                     <tr>
+                        <th>#</th>
                         <th>Název</th>
                         <th>Akce</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
+                        <th>#</th>
                         <th>Název</th>
                         <th>Akce</th>
                     </tr>
@@ -54,6 +50,7 @@
 
                     @foreach ($statuses as $status)
                         <tr>
+                            <td>{{ $status->id }}</td>
                             <td>{{ $status->name }}</td>
                             <td>
                                 <form action="{{ route('statuses.destroy',$status->id) }}" method="POST">

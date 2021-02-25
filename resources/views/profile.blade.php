@@ -25,12 +25,6 @@
         </div>
     @endif
 
-    @if (session('status'))
-        <div class="alert alert-success border-left-success" role="alert">
-            {{ session('status') }}
-        </div>
-    @endif
-
     <div class="row">
 
         <div class="col-lg-4 order-lg-2">

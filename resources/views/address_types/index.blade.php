@@ -17,12 +17,6 @@
         </div>
     @endif
 
-    @if (session('status'))
-        <div class="alert alert-success border-left-success" role="alert">
-            {{ session('status') }}
-        </div>
-    @endif
-
     <h1 class="h3 mb-2 text-gray-800">Adresy - Typy</h1>
     <a class="btn btn-success btn-icon-split mb-1" href="{{ route('address_types.create') }}">
         <span class="icon text-white-50">

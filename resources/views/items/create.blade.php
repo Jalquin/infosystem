@@ -58,12 +58,13 @@
 
         <div class="form-group">
             <label for="category-select-multiple">Kategorie:</label>
-            <select name="categories[]" id="category-select-multiple" placeholder="Zvolte až 5 kategorií" multiple>
+            <select name="categories[]" id="category-select-multiple" placeholder="Zvolte kategorie" multiple>
                 @foreach($categories as $category)
                     <option value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach
             </select>
         </div>
+
         <div class="form-group">
             <label for="position-select">Umístění:</label>
             <select name="position_id" id="position-select">
@@ -73,6 +74,7 @@
                 @endforeach
             </select>
         </div>
+
         <button type="submit" class="btn btn-primary btn-icon-split">
             <span class="icon text-white-50">
                 <i class="fas fa-save"></i>

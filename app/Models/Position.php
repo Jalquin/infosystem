@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @method static find(mixed $position_id)
@@ -17,7 +18,7 @@ class Position extends Model
         'name'
     ];
 
-    public function items()
+    public function items(): HasMany
     {
         return $this->hasMany(Item::class);
     }

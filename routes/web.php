@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AddressTypeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\JobController;
+use App\Http\Controllers\PersonController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -50,6 +54,17 @@ Route::resource('/statuses', StatusController::class);
 Route::resource('/roles', RoleController::class);
 
 Route::resource('/address_types', AddressTypeController::class);
+
+Route::resource('/addresses', AddressController::class);
+
+Route::resource('/people', PersonController::class);
+
+Route::resource('/companies', CompanyController::class);
+
+Route::resource('/jobs', JobController::class);
+
+
+
 
 
 

@@ -19,7 +19,7 @@ class CreatePeopleTable extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->text('note')->nullable();
-            $table->foreignId('role_id')->constrained()->onDelete('cascade');
+            $table->foreignId('role_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

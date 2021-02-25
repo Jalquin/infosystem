@@ -47,7 +47,7 @@
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
             <a class="nav-link" href="{{ route('home') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <i class="fas fa-tachometer-alt"></i>
                 <span>{{ __('Přehled') }}</span></a>
         </li>
 
@@ -56,15 +56,42 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            {{ __('Kategorie') }}
+            {{ __('Komponenty IS') }}
         </div>
 
-        <!-- Nav Item - Blank page -->
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('blank') }}">
-                <i class="far fa-sticky-note"></i>
-                <span>{{ __('Blank page') }}</span>
+            <a class="nav-link" href="{{ route('jobs.index') }}">
+                <i class="fas fa-hammer"></i>
+                <span>{{ __('Zakázky') }}</span>
             </a>
+        </li>
+
+        <!-- Nav Item - Address book -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAddressBook"
+               aria-expanded="false" aria-controls="collapseAddressBook">
+                <i class="fas fa-users"></i>
+                <span>Adresář</span>
+            </a>
+            <div id="collapseAddressBook" class="collapse" aria-labelledby="headingDepot"
+                 data-parent="#accordionSidebar"
+                 style="">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Adresář:</h6>
+                    <a class="collapse-item" href="{{route('companies.index')}}">
+                        <i class="fas fa-industry"></i>
+                        <span>Firmy</span>
+                    </a>
+                    <a class="collapse-item" href="{{route('people.index')}}">
+                        <i class="fas fa-user-friends"></i>
+                        <span>Osoby</span>
+                    </a>
+                    <a class="collapse-item" href="{{route('addresses.index')}}">
+                        <i class="fas fa-address-card"></i>
+                        <span>Adresy</span>
+                    </a>
+                </div>
+            </div>
         </li>
 
         <!-- Nav Item - Depot -->
@@ -83,14 +110,52 @@
             {{ __('Nastavení') }}
         </div>
 
-        <!-- Nav Item - Depot management -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDepot"
-               aria-expanded="false" aria-controls="collapseDepot">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Nastavení skladu</span>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
+               aria-expanded="false" aria-controls="collapseSettings">
+                <i class="fas fa-cogs"></i>
+                <span>Nastavení</span>
             </a>
-            <div id="collapseDepot" class="collapse" aria-labelledby="headingDepot" data-parent="#accordionSidebar"
+            <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings"
+                 data-parent="#accordionSidebar"
+                 style="">
+
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <!-- Nav Item - Depot management -->
+                    <a class="collapse-item" href="#" data-toggle="collapse" data-target="#collapseDepot"
+                       aria-expanded="false" aria-controls="collapseDepot">
+                        <i class="fas fa-cog"></i>
+                        <i class="fas fa-warehouse"></i>
+                        <span>Nastavení skladu</span>
+                    </a>
+
+                    <!-- Nav Item - Job management -->
+                    <a class="collapse-item" href="#" data-toggle="collapse" data-target="#collapseJob"
+                       aria-expanded="false" aria-controls="collapseJob">
+                        <i class="fas fa-cog"></i>
+                        <i class="fas fa-hammer"></i>
+                        <span>Nastavení zakázek</span>
+                    </a>
+
+                    <!-- Nav Item - Person management -->
+                    <a class="collapse-item" href="#" data-toggle="collapse" data-target="#collapsePerson"
+                       aria-expanded="false" aria-controls="collapsePerson">
+                        <i class="fas fa-cog"></i>
+                        <i class="fas fa-user-friends"></i>
+                        <span>Nastavení osob</span>
+                    </a>
+
+                    <!-- Nav Item - Address management -->
+                    <a class="collapse-item" href="#" data-toggle="collapse" data-target="#collapseAddress"
+                       aria-expanded="false" aria-controls="collapseAddress">
+                        <i class="fas fa-cog"></i>
+                        <i class="fas fa-address-card"></i>
+                        <span>Nastavení adres</span>
+                    </a>
+                </div>
+            </div>
+            <div id="collapseDepot" class="collapse" aria-labelledby="headingDepotSettings"
+                 data-parent="#accordionSidebar"
                  style="">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Nastavení skladu:</h6>
@@ -98,48 +163,23 @@
                     <a class="collapse-item" href="{{route('positions.index')}}">Umístění</a>
                 </div>
             </div>
-        </li>
-
-        <!-- Nav Item - Job management -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseJob"
-               aria-expanded="false" aria-controls="collapseJob">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Nastavení zakázek</span>
-            </a>
-            <div id="collapseJob" class="collapse" aria-labelledby="headingDepot" data-parent="#accordionSidebar"
+            <div id="collapseJob" class="collapse" aria-labelledby="headingJobSettings" data-parent="#accordionSidebar"
                  style="">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Nastavení zakázek:</h6>
                     <a class="collapse-item" href="{{route('statuses.index')}}">Statusy</a>
                 </div>
             </div>
-        </li>
-
-        <!-- Nav Item - Person management -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePerson"
-               aria-expanded="false" aria-controls="collapsePerson">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Nastavení osob</span>
-            </a>
-            <div id="collapsePerson" class="collapse" aria-labelledby="headingDepot" data-parent="#accordionSidebar"
+            <div id="collapsePerson" class="collapse" aria-labelledby="headingPersonSettings"
+                 data-parent="#accordionSidebar"
                  style="">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Nastavení osob:</h6>
                     <a class="collapse-item" href="{{route('roles.index')}}">Role</a>
                 </div>
             </div>
-        </li>
-
-        <!-- Nav Item - Address management -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAddress"
-               aria-expanded="false" aria-controls="collapseAddress">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Nastavení adres</span>
-            </a>
-            <div id="collapseAddress" class="collapse" aria-labelledby="headingDepot" data-parent="#accordionSidebar"
+            <div id="collapseAddress" class="collapse" aria-labelledby="headingAddressSettings"
+                 data-parent="#accordionSidebar"
                  style="">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Nastavení adres:</h6>
@@ -147,7 +187,6 @@
                 </div>
             </div>
         </li>
-
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
@@ -204,18 +243,18 @@
                                 </span>
                                 <span class="text">Registrovat</span>
                             </a>
-                        @endguest
+                    @endguest
 
                     <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="{{ route('profile') }}">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <i class="fas fa-user fa-sm mr-2 text-gray-400"></i>
                                 {{ __('Profil') }}
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <i class="fas fa-sign-out-alt fa-sm mr-2 text-gray-400"></i>
                                 {{ __('Odhlásit se') }}
                             </a>
                         </div>

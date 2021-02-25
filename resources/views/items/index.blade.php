@@ -19,12 +19,6 @@
         </div>
     @endif
 
-    @if (session('status'))
-        <div class="alert alert-success border-left-success" role="alert">
-            {{ session('status') }}
-        </div>
-    @endif
-
     <h1 class="h3 mb-2 text-gray-800">Sklad</h1>
     <a class="btn btn-success btn-icon-split mb-1" href="{{ route('items.create') }}">
         <span class="icon text-white-50">
@@ -161,7 +155,6 @@
                     <thead>
                     <tr>
                         <th>Název</th>
-                        <th>Kategorie</th>
                         <th>Množství</th>
                         <th>Akce</th>
                     </tr>
@@ -169,7 +162,6 @@
                     <tfoot>
                     <tr>
                         <th>Název</th>
-                        <th>Kategorie</th>
                         <th>Množství</th>
                         <th>Akce</th>
                     </tr>
@@ -179,13 +171,6 @@
                     @foreach ($items as $item)
                         <tr>
                             <td>{{ $item->name }}</td>
-                            <td>
-                                <ul>
-                                    @foreach($item->categories as $category)
-                                        <li>{{$category->name}}</li>
-                                    @endforeach
-                                </ul>
-                            </td>
                             <td>{{ $item->amount }}
                                 <div class="btn-group float-right" role="group" aria-label="Basic example"><a
                                         class="btn btn-outline-secondary"
@@ -297,7 +282,8 @@
                             <td>
                                 <form action="{{ route('items.destroy',$lowItem->id) }}" method="POST">
 
-                                    <a class="btn btn-info btn-icon-split" href="{{ route('items.show',$lowItem->id) }}">
+                                    <a class="btn btn-info btn-icon-split"
+                                       href="{{ route('items.show',$lowItem->id) }}">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-info-circle"></i>
                                         </span>
@@ -332,7 +318,8 @@
                                                         <span aria-hidden="true">×</span>
                                                     </button>
                                                 </div>
-                                                <div class="modal-body">Opravdu chcete smazat položku {{$lowItem->name}}?
+                                                <div class="modal-body">Opravdu chcete smazat položku {{$lowItem->name}}
+                                                    ?
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button class="btn btn-link" type="button"

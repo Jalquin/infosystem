@@ -13,6 +13,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
+use Image;
 
 class ItemController extends Controller
 {
@@ -80,7 +81,17 @@ class ItemController extends Controller
         ]);
         if ($request->hasFile('image')) {
             $image = $request->file('image')->getClientOriginalName();
-            $request->image->storeAs('items_img', $image, 'public');
+
+            $img = $request->image;
+            $fileName = $img->getClientOriginalName();
+            $imageResize = Image::make($img->getRealPath());
+            $imageResize->resize(500, 500, function ($constraint) {
+                $constraint->aspectRatio();}
+                );
+
+            $imageResize->save(storage_path('app/public/items_img/'.$fileName));
+
+//            $img->storeAs('items_img/original', $image, 'public');
         }
 
         $request->validate([
@@ -157,7 +168,17 @@ class ItemController extends Controller
                 Storage::delete('/public/items_img/' . $image);
             }
             $image = $request->file('image')->getClientOriginalName();
-            $request->image->storeAs('items_img', $image, 'public');
+
+            $img = $request->image;
+            $fileName = $img->getClientOriginalName();
+            $imageResize = Image::make($img->getRealPath());
+            $imageResize->resize(500, 500, function ($constraint) {
+                $constraint->aspectRatio();}
+            );
+
+            $imageResize->save(storage_path('app/public/items_img/'.$fileName));
+
+//            $img->storeAs('items_img/original', $image, 'public');
         }
 
         $request->validate([

@@ -29,7 +29,7 @@
         <div class="form-group">
             <label for="name">Název:</label>
             <input id="name" type="text" name="name" value="{{ $category->name }}" class="form-control"
-                   placeholder="Název">
+                   placeholder="Název" required>
         </div>
         <button type="submit" class="btn btn-primary btn-icon-split">
             <span class="icon text-white-50">
