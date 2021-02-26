@@ -13,23 +13,23 @@
     </a>
 
     <dl class="row mt-1 border">
-        <dt class="col-sm-3">Ulice:</dt>
-        <dd class="col-sm-9">{{ $address->street }}</dd>
+        <dt class="col-sm-1">Ulice:</dt>
+        <dd class="col-sm-11">{{ $address->street }}</dd>
 
-        <dt class="col-sm-3">Číslo:</dt>
-        <dd class="col-sm-9">{{ $address->number }}</dd>
+        <dt class="col-sm-1">Číslo:</dt>
+        <dd class="col-sm-11">{{ $address->number }}</dd>
 
-        <dt class="col-sm-3">Obec/město:</dt>
-        <dd class="col-sm-9">{{ $address->city }}</dd>
+        <dt class="col-sm-1">Obec/město:</dt>
+        <dd class="col-sm-11">{{ $address->city }}</dd>
 
         @if($address->zip)
-            <dt class="col-sm-3">PSČ:</dt>
-            <dd class="col-sm-9">{{ $address->zip }}</dd>
+            <dt class="col-sm-1">PSČ:</dt>
+            <dd class="col-sm-11">{{ $address->zip }}</dd>
         @endif
 
         @if($address->addressType)
-            <dt class="col-sm-3">Typ adresy:</dt>
-            <dd class="col-sm-9">{{ $address->addressType->name }}</dd>
+            <dt class="col-sm-1">Typ adresy:</dt>
+            <dd class="col-sm-11">{{ $address->addressType->name }}</dd>
         @endif
     </dl>
 

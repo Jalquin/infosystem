@@ -52,14 +52,6 @@
                             <td>
                                 <form action="{{ route('roles.destroy',$role->id) }}" method="POST">
 
-                                    <a class="btn btn-info btn-icon-split"
-                                       href="{{ route('roles.show',$role->id) }}">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-info-circle"></i>
-                                        </span>
-                                        <span class="text">Zobrazit</span>
-                                    </a>
-
                                     <a class="btn btn-warning btn-icon-split"
                                        href="{{ route('roles.edit',$role->id) }}">
                                         <span class="icon text-white-50">

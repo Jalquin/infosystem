@@ -85,7 +85,12 @@ class JobController extends Controller
 
         if($request->new_address == 'on'){
 
-            $address = Address::create($request->all());
+            $address = Address::create([
+                'street' => $request->street,
+                'number' =>$request->address_number,
+                'zip' => $request->zip,
+                'city'=> $request->city
+            ]);
 
             $address->addressType()->associate($request->address_type_id);
             $address->save();
@@ -152,7 +157,7 @@ class JobController extends Controller
         if($request->new_address == 'on'){
             $request->validate([
                 'street'=> 'required',
-                'number',
+                'address_number',
                 'zip',
                 'city'=> 'required'
             ]);
@@ -167,7 +172,12 @@ class JobController extends Controller
 
         if($request->new_address == 'on'){
 
-            $address = Address::create($request->all());
+            $address = $address = Address::create([
+                'street' => $request->street,
+                'number' =>$request->address_number,
+                'zip' => $request->zip,
+                'city'=> $request->city
+            ]);
 
             $address->addressType()->associate($request->address_type_id);
             $address->save();

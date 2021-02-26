@@ -13,24 +13,24 @@
     </a>
 
     <dl class="row mt-1 border">
-        <dt class="col-sm-3">Název:</dt>
-        <dd class="col-sm-9">{{ $company->name }}</dd>
+        <dt class="col-sm-1">Název:</dt>
+        <dd class="col-sm-11">{{ $company->name }}</dd>
 
         @if($company->email)
-            <dt class="col-sm-3">Email:</dt>
-            <dd class="col-sm-9">{{ $company->email }}</dd>
+            <dt class="col-sm-1">Email:</dt>
+            <dd class="col-sm-11">{{ $company->email }}</dd>
         @endif
         @if($company->phone)
-            <dt class="col-sm-3">Telefon:</dt>
-            <dd class="col-sm-9">{{ $company->phone }}</dd>
+            <dt class="col-sm-1">Telefon:</dt>
+            <dd class="col-sm-11">{{ $company->phone }}</dd>
         @endif
         @if($company->note)
-            <dt class="col-sm-3">Poznámka:</dt>
-            <dd class="col-sm-9">{{ $company->note }}</dd>
+            <dt class="col-sm-1">Poznámka:</dt>
+            <dd class="col-sm-11">{{ $company->note }}</dd>
         @endif
         @unless($company->addresses->isEmpty())
-            <dt class="col-sm-3">Adresy:</dt>
-            <dd class="col-sm-9">
+            <dt class="col-sm-1">Adresy:</dt>
+            <dd class="col-sm-11">
                 <ul>
                     @foreach($company->addresses as $address)
                         <li>

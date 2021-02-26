@@ -68,10 +68,6 @@ class AddressController extends Controller
         $address->addressType()->associate($request->address_type_id);
         $address->save();
 
-        $address->companies()->attach($request->companies);
-        $address->people()->attach($request->people);
-        $address->jobs()->attach($request->jobs);
-
         return redirect()->route('addresses.index')
             ->with('success', 'Úspěšně přidána adresa '.$request->street.' '.$request->number.'.');
     }
@@ -126,10 +122,6 @@ class AddressController extends Controller
 
         $address->addressType()->associate($request->address_type_id);
         $address->save();
-
-        $address->companies()->sync($request->companies);
-        $address->people()->sync($request->people);
-        $address->jobs()->sync($request->jobs);
 
         return redirect()->route('addresses.index')
             ->with('success', 'Úspěšně upravena adresa '.$address->street.' '.$address->number.'.');

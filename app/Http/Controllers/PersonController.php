@@ -106,6 +106,7 @@ class PersonController extends Controller
      */
     public function show(Person $person)
     {
+
         $jobs = Job::with('people')->get();
         $address = Address::with('people')->get();
         $companies = Company::with('people')->get();

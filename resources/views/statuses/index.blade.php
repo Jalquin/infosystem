@@ -51,17 +51,41 @@
                     @foreach ($statuses as $status)
                         <tr>
                             <td>{{ $status->id }}</td>
-                            <td>{{ $status->name }}</td>
+                            <td><b class="
+                                    @switch($status->id)
+                                @case(1)
+                                    text-info
+@break
+
+                                @case(2)
+                                    text-primary
+@break
+
+                                @case(3)
+                                    text-warning
+@break
+
+                                @case(4)
+                                    text-success
+@break
+                                @case(5)
+                                    text-danger
+@break
+                                @case(6)
+                                    text-danger
+@break
+                                @case(7)
+                                    text-dark
+@break
+
+                                @default
+                                    text-secondary
+@endswitch
+                                    ">{{ $status->name }}</b>
+
+                            </td>
                             <td>
                                 <form action="{{ route('statuses.destroy',$status->id) }}" method="POST">
-
-                                    <a class="btn btn-info btn-icon-split"
-                                       href="{{ route('statuses.show',$status->id) }}">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-info-circle"></i>
-                                        </span>
-                                        <span class="text">Zobrazit</span>
-                                    </a>
 
                                     <a class="btn btn-warning btn-icon-split"
                                        href="{{ route('statuses.edit',$status->id) }}">

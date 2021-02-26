@@ -59,9 +59,9 @@
 
         <div class="form-group">
             <label for="status-select">Status:</label>
-            <select name="status_id" id="status-select" required>
+            <select name="status_id" id="status-select"required>
                 @foreach($statuses as $status)
-                    <option value="{{$status->id}}">{{$status->name}}</option>
+                    <option value="{{$status->id}}">{{$status->id.' : '.$status->name}}</option>
                 @endforeach
             </select>
         </div>
@@ -77,7 +77,8 @@
         </div>
 
         <div class="form-check mb-4">
-            <input id="new_address" type="checkbox" name="new_address" class="form-check-input" data-toggle="collapse" data-target="#new_address_collapse">
+            <input id="new_address" type="checkbox" name="new_address" class="form-check-input" data-toggle="collapse"
+                   data-target="#new_address_collapse">
             <label class="form-check-label" for="new_address">Nová adresa</label>
         </div>
 
@@ -87,8 +88,8 @@
                 <input id="name" type="text" name="street" class="form-control" placeholder="Ulice">
             </div>
             <div class="form-group">
-                <label for="number">Číslo:</label>
-                <input id="number" type="text" name="number" class="form-control" placeholder="Číslo">
+                <label for="address_number">Číslo:</label>
+                <input id="address_number" type="text" name="address_number" class="form-control" placeholder="Číslo">
             </div>
             <div class="form-group">
                 <label for="city">Obec/Město:</label>

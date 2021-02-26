@@ -13,13 +13,13 @@
     </a>
 
     <dl class="row mt-1 border">
-        <dt class="col-sm-3">Jméno:</dt>
-        <dd class="col-sm-9">{{ $user->name }}</dd>
-        <dt class="col-sm-3">Email:</dt>
-        <dd class="col-sm-9">{{ $user->email }}</dd>
+        <dt class="col-sm-1">Jméno:</dt>
+        <dd class="col-sm-11">{{ $user->name }}</dd>
+        <dt class="col-sm-1">Email:</dt>
+        <dd class="col-sm-11">{{ $user->email }}</dd>
         @if($user->admin == 1)
-            <dt class="col-sm-3">Admin:</dt>
-            <dd class="col-sm-9">Ano</dd>
+            <dt class="col-sm-1">Admin:</dt>
+            <dd class="col-sm-11">Ano</dd>
         @endif
     </dl>
 

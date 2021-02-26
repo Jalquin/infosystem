@@ -95,8 +95,8 @@
                 <input id="name" type="text" name="street" class="form-control" placeholder="Ulice">
             </div>
             <div class="form-group">
-                <label for="number">Číslo:</label>
-                <input id="number" type="text" name="number" class="form-control" placeholder="Číslo">
+                <label for="address_number">Číslo:</label>
+                <input id="address_number" type="text" name="address_number" class="form-control" placeholder="Číslo">
             </div>
             <div class="form-group">
                 <label for="city">Obec/Město:</label>

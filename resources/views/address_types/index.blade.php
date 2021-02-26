@@ -52,14 +52,6 @@
                             <td>
                                 <form action="{{ route('address_types.destroy',$addressType->id) }}" method="POST">
 
-                                    <a class="btn btn-info btn-icon-split"
-                                       href="{{ route('address_types.show',$addressType->id) }}">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-info-circle"></i>
-                                        </span>
-                                        <span class="text">Zobrazit</span>
-                                    </a>
-
                                     <a class="btn btn-warning btn-icon-split"
                                        href="{{ route('address_types.edit',$addressType->id) }}">
                                         <span class="icon text-white-50">

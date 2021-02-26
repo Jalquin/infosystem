@@ -37,83 +37,47 @@
                 <div class="card-body">
 
                     @foreach($jobs as $job)
+                        <a href="{{ route('jobs.show',$job->id) }}"><h4
+                                class="small font-weight-bold">{{$job->number.': '.$job->name}}<span
+                                    class="float-right">{{$job->status->name}}</span>
+                            </h4></a>
+                        <div class="progress mb-4">
+                            <div class="progress-bar
+                                    @switch($job->status_id)
+                                        @case(1)
+                                            bg-info
+                                        @break
 
-                        @switch($job->status_id)
-                            @case(1)
-                            <a href="{{ route('jobs.show',$job->id) }}"><h4
-                                    class="small font-weight-bold">{{$job->number.': '.$job->name}}<span
-                                        class="float-right">{{$job->status->name}}</span>
-                                </h4></a>
-                            <div class="progress mb-4">
-                                <div class="progress-bar bg-danger" role="progressbar"
-                                     style="width: {{($job->status_id / (count(\App\Models\Status::all())-1))*100}}%"
-                                     aria-valuenow="{{$job->status_id}}"
-                                     aria-valuemin="0"
-                                     aria-valuemax="{{count(\App\Models\Status::all())-1}}">{{$job->status->name}}
-                                </div>
+                                        @case(2)
+                                            bg-primary
+                                        @break
+
+                                        @case(3)
+                                            bg-warning
+                                        @break
+
+                                        @case(4)
+                                            bg-success
+                                        @break
+
+                                        @case(5)
+                                            bg-danger
+                                        @break
+
+                                        @case(6)
+                                            bg-danger
+                                        @break
+
+                                        @default
+                                            bg-secondary
+                                    @endswitch
+                                " role="progressbar"
+                                 style="width: {{($job->status_id / (count(\App\Models\Status::all())-2))*100}}%"
+                                 aria-valuenow="{{$job->status_id}}"
+                                 aria-valuemin="0"
+                                 aria-valuemax="{{count(\App\Models\Status::all())-2}}">{{$job->status->name}}
                             </div>
-                            @break
-
-                            @case(2)
-                            <a href="{{ route('jobs.show',$job->id) }}"><h4
-                                    class="small font-weight-bold">{{$job->number.': '.$job->name}}<span
-                                        class="float-right">{{$job->status->name}}</span>
-                                </h4></a>
-                            <div class="progress mb-4">
-                                <div class="progress-bar bg-warning" role="progressbar"
-                                     style="width: {{($job->status_id / (count(\App\Models\Status::all())-1))*100}}%"
-                                     aria-valuenow="{{$job->status_id}}"
-                                     aria-valuemin="0"
-                                     aria-valuemax="{{count(\App\Models\Status::all())-1}}">{{$job->status->name}}
-                                </div>
-                            </div>
-                            @break
-
-                            @case(3)
-                            <a href="{{ route('jobs.show',$job->id) }}"><h4
-                                    class="small font-weight-bold">{{$job->number.': '.$job->name}}<span
-                                        class="float-right">{{$job->status->name}}</span>
-                                </h4></a>
-                            <div class="progress mb-4">
-                                <div class="progress-bar" role="progressbar"
-                                     style="width: {{($job->status_id / (count(\App\Models\Status::all())-1))*100}}%"
-                                     aria-valuenow="{{$job->status_id}}"
-                                     aria-valuemin="0"
-                                     aria-valuemax="{{count(\App\Models\Status::all())-1}}">{{$job->status->name}}
-                                </div>
-                            </div>
-                            @break
-
-                            @case(4)
-                            <a href="{{ route('jobs.show',$job->id) }}"><h4
-                                    class="small font-weight-bold">{{$job->number.': '.$job->name}}<span
-                                        class="float-right">{{$job->status->name}}</span>
-                                </h4></a>
-                            <div class="progress mb-4">
-                                <div class="progress-bar bg-info" role="progressbar"
-                                     style="width: {{($job->status_id / (count(\App\Models\Status::all())-1))*100}}%"
-                                     aria-valuenow="{{$job->status_id}}"
-                                     aria-valuemin="0"
-                                     aria-valuemax="{{count(\App\Models\Status::all())-1}}">{{$job->status->name}}
-                                </div>
-                            </div>
-                            @break
-
-                            @default
-                            <a href="{{ route('jobs.show',$job->id) }}"><h4
-                                    class="small font-weight-bold">{{$job->number.': '.$job->name}}<span
-                                        class="float-right">{{$job->status->name}}</span>
-                                </h4></a>
-                            <div class="progress mb-4">
-                                <div class="progress-bar bg-success" role="progressbar"
-                                     style="width: {{($job->status_id / (count(\App\Models\Status::all())-1))*100}}%"
-                                     aria-valuenow="{{$job->status_id}}"
-                                     aria-valuemin="0"
-                                     aria-valuemax="{{count(\App\Models\Status::all())-1}}">{{$job->status->name}}
-                                </div>
-                            </div>
-                        @endswitch
-
+                        </div>
 
                     @endforeach
 

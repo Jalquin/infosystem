@@ -52,14 +52,6 @@
                             <td>
                                 <form action="{{ route('categories.destroy',$category->id) }}" method="POST">
 
-                                    <a class="btn btn-info btn-icon-split"
-                                       href="{{ route('categories.show',$category->id) }}">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-info-circle"></i>
-                                        </span>
-                                        <span class="text">Zobrazit</span>
-                                    </a>
-
                                     <a class="btn btn-warning btn-icon-split"
                                        href="{{ route('categories.edit',$category->id) }}">
                                         <span class="icon text-white-50">

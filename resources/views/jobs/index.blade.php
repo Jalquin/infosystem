@@ -60,7 +60,38 @@
                             <td>{{ $job->number }}</td>
                             <td>{{ $job->invoice_number }}</td>
                             <td>{{ $job->name }}</td>
-                            <td>{{ $job->status->name }}</td>
+                            <td><b class="
+                                    @switch($job->status_id)
+                                @case(1)
+                                    text-info
+@break
+
+                                @case(2)
+                                    text-primary
+@break
+
+                                @case(3)
+                                    text-warning
+@break
+
+                                @case(4)
+                                    text-success
+@break
+                                @case(5)
+                                    text-danger
+@break
+                                @case(6)
+                                    text-danger
+@break
+                                @case(7)
+                                    text-dark
+@break
+
+                                @default
+                                    text-secondary
+                                    @endswitch
+                                    ">{{ $job->status->name }}</b>
+                            </td>
                             <td>
                                 <form action="{{ route('jobs.destroy',$job->id) }}" method="POST">
 

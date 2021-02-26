@@ -14,29 +14,61 @@
 
     <dl class="row mt-1 border">
         @if($job->tender_number)
-            <dt class="col-sm-3">Číslo nabídky:</dt>
-            <dd class="col-sm-9">{{ $job->tender_number }}</dd>
+            <dt class="col-sm-1">Číslo nabídky:</dt>
+            <dd class="col-sm-11">{{ $job->tender_number }}</dd>
         @endif
-        <dt class="col-sm-3">Číslo objednávky:</dt>
-        <dd class="col-sm-9">{{ $job->number }}</dd>
+        <dt class="col-sm-1">Číslo objednávky:</dt>
+        <dd class="col-sm-11">{{ $job->number }}</dd>
         @if($job->invoice_number)
-            <dt class="col-sm-3">Číslo faktury:</dt>
-            <dd class="col-sm-9">{{ $job->invoice_number }}</dd>
+            <dt class="col-sm-1">Číslo faktury:</dt>
+            <dd class="col-sm-11">{{ $job->invoice_number }}</dd>
         @endif
-        <dt class="col-sm-3">Název:</dt>
-        <dd class="col-sm-9">{{ $job->name }}</dd>
+        <dt class="col-sm-1">Název:</dt>
+        <dd class="col-sm-11">{{ $job->name }}</dd>
         @if($job->date)
-            <dt class="col-sm-3">Datum:</dt>
-            <dd class="col-sm-9">{{ $job->date }}</dd>
+            <dt class="col-sm-1">Datum:</dt>
+            <dd class="col-sm-11">{{ $job->date }}</dd>
         @endif
         @if($job->description)
-                <dt class="col-sm-3">Popis:</dt>
-                <dd class="col-sm-9">
-                    <textarea rows="10" style="min-width: 100%" readonly>{{ $job->description }}</textarea>
-                </dd>
+            <dt class="col-sm-1">Popis:</dt>
+            <dd class="col-sm-11">
+                <textarea rows="10" style="min-width: 100%" readonly>{{ $job->description }}</textarea>
+            </dd>
         @endif
-        <dt class="col-sm-3">Status:</dt>
-        <dd class="col-sm-9">{{ $job->status->name }}</dd>
+        <dt class="col-sm-1">Status:</dt>
+        <dd class="col-sm-11">
+            <b class="
+                @switch($job->status_id)
+            @case(1)
+                text-info
+@break
+
+            @case(2)
+                text-primary
+@break
+
+            @case(3)
+                text-warning
+@break
+
+            @case(4)
+                text-success
+@break
+            @case(5)
+                text-danger
+@break
+            @case(6)
+                text-danger
+@break
+            @case(7)
+                text-dark
+@break
+
+            @default
+                text-secondary
+@endswitch
+                ">{{ $job->status->name }}</b>
+        </dd>
     </dl>
 
     <h3 class="mt-2">Propojení:</h3>

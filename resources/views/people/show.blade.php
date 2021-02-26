@@ -16,24 +16,24 @@
         {{ $person->name }}
     </div>
     <dl class="row mt-1 border">
-        <dt class="col-sm-3">Název:</dt>
-        <dd class="col-sm-9">{{ $person->name }}</dd>
+        <dt class="col-sm-1">Název:</dt>
+        <dd class="col-sm-11">{{ $person->name }}</dd>
 
         @if($person->email)
-            <dt class="col-sm-3">Email:</dt>
-            <dd class="col-sm-9">{{ $person->email }}</dd>
+            <dt class="col-sm-1">Email:</dt>
+            <dd class="col-sm-11">{{ $person->email }}</dd>
         @endif
         @if($person->phone)
-            <dt class="col-sm-3">Telefon:</dt>
-            <dd class="col-sm-9">{{ $person->phone }}</dd>
+            <dt class="col-sm-1">Telefon:</dt>
+            <dd class="col-sm-11">{{ $person->phone }}</dd>
         @endif
         @if($person->note)
-            <dt class="col-sm-3">Poznámka:</dt>
-            <dd class="col-sm-9">{{ $person->note }}</dd>
+            <dt class="col-sm-1">Poznámka:</dt>
+            <dd class="col-sm-11">{{ $person->note }}</dd>
         @endif
         @unless($person->addresses->isEmpty())
-            <dt class="col-sm-3">Adresy:</dt>
-            <dd class="col-sm-9">
+            <dt class="col-sm-1">Adresy:</dt>
+            <dd class="col-sm-11">
                 <ul>
                     @foreach($person->addresses as $address)
                         <li>
@@ -45,10 +45,15 @@
         @endunless
     </dl>
 
-    <h3 class="mt-2">Firmy:</h3>
+    <h3 class="mt-2">Propojení:</h3>
     <div class="row">
+        @if($person->companies->isEmpty() AND $person->jobs->isEmpty())
+            <label class="col">Položka nemá žádné spojení.</label>
+        @endif
+
         @unless($person->companies->isEmpty())
             <div class="col border">
+                <label>Firmy:</label>
                 <ul>
                     @foreach($person->companies as $company)
                         <li>
@@ -57,9 +62,21 @@
                     @endforeach
                 </ul>
             </div>
-        @else
-            <label class="col">Firma nemá žádné osoby.</label>
         @endunless
+
+        @unless($person->jobs->isEmpty())
+            <div class="col border">
+                <label>Zakázky:</label>
+                <ul>
+                    @foreach($person->jobs as $job)
+                        <li>
+                            <a href="{{route('jobs.show', $job->id)}}">{{$job->name}}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endunless
+
     </div>
 
     <div class="row">
