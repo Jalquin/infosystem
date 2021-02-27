@@ -11,12 +11,9 @@
                     </span>
         <span class="text">Zpět</span>
     </a>
-    <div class="form-group">
-        <label>Jméno:</label>
-        {{ $person->name }}
-    </div>
+
     <dl class="row mt-1 border">
-        <dt class="col-sm-1">Název:</dt>
+        <dt class="col-sm-1">Jméno:</dt>
         <dd class="col-sm-11">{{ $person->name }}</dd>
 
         @if($person->email)

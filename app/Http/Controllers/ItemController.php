@@ -7,6 +7,7 @@ use App\Models\Item;
 use App\Models\Position;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -240,7 +241,8 @@ class ItemController extends Controller
             'amount' => $amount,
             'is_enough' => $enough
         ]);
-        return redirect()->route('items.index')
+
+        return redirect()->back()
             ->with('success', 'Úspěšně přidáno množství položce ' . $item->name . '. Konečné množství je : ' . $item->amount);
     }
 
@@ -256,7 +258,7 @@ class ItemController extends Controller
             'amount' => $amount,
             'is_enough' => $enough
         ]);
-        return redirect()->route('items.index')
+        return redirect()->back()
             ->with('success', 'Úspěšně odebráno množství položce ' . $item->name . '. Konečné množství je : ' . $item->amount);
     }
 }

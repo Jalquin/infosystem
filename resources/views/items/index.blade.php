@@ -72,7 +72,7 @@
                     @foreach ($categoriesItem->unique('id') as $categoryItem)
                         <tr>
                             <td>{{ $categoryItem->name }}</td>
-                            <td>{{ $categoryItem->amount }}
+                            <td>{{ $categoryItem->amount }} @if($categoryItem->min_amount) {{' / '.$categoryItem->min_amount}} @endif Ks
                                 <div class="btn-group float-right" role="group" aria-label="Basic example"><a
                                         class="btn btn-outline-secondary"
                                         href="{{route('items.amount.add', $categoryItem->id)}}">+</a><a
@@ -171,7 +171,7 @@
                     @foreach ($items as $item)
                         <tr>
                             <td>{{ $item->name }}</td>
-                            <td>{{ $item->amount }}
+                            <td>{{ $item->amount }} @if($item->min_amount) {{' / '.$item->min_amount}} @endif Ks
                                 <div class="btn-group float-right" role="group" aria-label="Basic example"><a
                                         class="btn btn-outline-secondary"
                                         href="{{route('items.amount.add', $item->id)}}">+</a><a
@@ -269,7 +269,7 @@
                         <tr>
                             <td>{{ $lowItem->name }}</td>
 
-                            <td>{{ $lowItem->amount }}
+                            <td>{{ $lowItem->amount }} @if($lowItem->min_amount) {{' / '.$lowItem->min_amount}} @endif Ks
                                 <div class="btn-group float-right" role="group" aria-label="Basic example">
                                     <a
                                         class="btn btn-outline-secondary"

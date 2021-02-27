@@ -4,6 +4,15 @@
 
 @section('content')
 
+    @if (session('success'))
+        <div class="alert alert-success border-left-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
     <h2>Detaily položky <b>{{ $item->name }}</b></h2>
     <a href="{{ route('items.index') }}" class="btn btn-secondary btn-icon-split">
                     <span class="icon text-white-50">
@@ -12,32 +21,42 @@
         <span class="text">Zpět</span>
     </a>
     <dl class="row mt-1 border">
-        <dt class="col-sm-3">Název:</dt>
-        <dd class="col-sm-9">{{ $item->name }}</dd>
+        <dt class="col-sm-1">Název:</dt>
+        <dd class="col-sm-11">{{ $item->name }}</dd>
 
-        <dt class="col-sm-3">Množství:</dt>
-        <dd class="col-sm-9">{{ $item->amount }} Ks @if($item->min_amount) / {{ $item->min_amount }} Ks @endif</dd>
-        @if($item->image)
-            <dt class="col-sm-3">Obrázek:</dt>
-            <dd class="col-sm-9"><img class="img-fluid" style="max-height: 500px"
+        <dt class="col-sm-1">Množství:</dt>
+        <dd class="col-sm-11">{{ $item->amount }} @if($item->min_amount) {{ ' / '.$item->min_amount }}@endif Ks
+            <br>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a
+                    class="btn btn-outline-secondary"
+                    href="{{route('items.amount.add', $item->id)}}">+</a>
+                <a
+                    class="btn btn-outline-secondary"
+                    href="{{route('items.amount.subtract', $item->id )}}">-</a>
+            </div>
+        </dd>
+    @if($item->image)
+            <dt class="col-sm-1">Obrázek:</dt>
+            <dd class="col-sm-11"><img class="img-fluid" style="max-height: 500px"
                                       src="{{asset('storage/items_img/'. $item->image)}}"
                                       alt="Obrázek položky {{ $item->name }}"></dd>
         @endif
         @if($item->description)
-            <dt class="col-sm-3">Popis:</dt>
-            <dd class="col-sm-9">{{ $item->description }}</dd>
+            <dt class="col-sm-1">Popis:</dt>
+            <dd class="col-sm-11">{{ $item->description }}</dd>
         @endif
         @if($item->price)
-            <dt class="col-sm-3">Cena:</dt>
-            <dd class="col-sm-9">{{ $item->price }} Kč</dd>
+            <dt class="col-sm-1">Cena:</dt>
+            <dd class="col-sm-11">{{ $item->price }} Kč</dd>
         @endif
         @if($item->position_id)
-            <dt class="col-sm-3">Umístění:</dt>
-            <dd class="col-sm-9">{{ $item->position->name }}</dd>
+            <dt class="col-sm-1">Umístění:</dt>
+            <dd class="col-sm-11">{{ $item->position->name }}</dd>
         @endif
         @unless($item->categories->isEmpty())
-            <dt class="col-sm-3">Kategorie:</dt>
-            <dd class="col-sm-9">
+            <dt class="col-sm-1">Kategorie:</dt>
+            <dd class="col-sm-11">
                 <ul>
                     @foreach($item->categories as $category)
                         <li>{{$category->name}}</li>
