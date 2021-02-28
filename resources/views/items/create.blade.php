@@ -39,8 +39,12 @@
             <textarea id="description" rows="3" class="form-control" name="description" placeholder="Popis"></textarea>
         </div>
         <div class="form-group">
-            <label for="image">Obrázek:</label>
-            <input type="file" class="form-control-file" name="image" id="image">
+            <div class="custom-file" id="customFile" lang="cs">
+                <input type="file" class="custom-file-input" name="image" id="exampleInputFile" aria-describedby="fileHelp">
+                <label class="custom-file-label" for="exampleInputFile">
+                    Zvolte obrázek...
+                </label>
+            </div>
         </div>
         <div class="form-group">
             <label for="amount">Množství:</label>
@@ -87,6 +91,13 @@
 @endsection
 
 @push('scripts')
+    <script>
+        $('#exampleInputFile').on('change',function(){
+            const fileName = $(this).val();
+            fieldVal = fileName.replace("C:\\fakepath\\", "");
+            $(this).next('.custom-file-label').html(fieldVal);
+        })
+    </script>
     <script
         src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006273/BBBootstrap/choices.min.js?version=7.0.0"></script>
     <script>

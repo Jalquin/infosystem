@@ -28,18 +28,21 @@
         @method('PUT')
         <div class="form-group">
             <label for="name">Jméno:</label>
-            <input id="name" type="text" name="name" value="{{$user->name}}" class="form-control" placeholder="Jméno" required>
+            <input id="name" type="text" name="name" value="{{$user->name}}" class="form-control" placeholder="Jméno"
+                   required>
         </div>
         <div class="form-group">
             <label for="email">Email:</label>
-            <input id="email" type="email" name="email" value="{{$user->email}}" class="form-control" placeholder="Email" required>
+            <input id="email" type="email" name="email" value="{{$user->email}}" class="form-control"
+                   placeholder="Email" required>
         </div>
         <div class="form-group">
             <label for="password">Heslo:</label>
             <input id="password" type="password" name="password" class="form-control" placeholder="Heslo">
         </div>
         <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="admin" id="admin" @if($user->admin == 1) checked @endif>
+            <input type="checkbox" class="form-check-input" name="admin" id="admin"
+                   @if($user->admin == 1) checked @endif>
             <label class="form-check-label" for="admin">Admin</label>
         </div>
 

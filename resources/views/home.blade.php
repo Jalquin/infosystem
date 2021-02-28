@@ -54,44 +54,45 @@
                         <a href="{{ route('jobs.show',$job->id) }}"><h4
                                 class="small font-weight-bold">{{$job->number.': '.$job->name}}<span
                                     class="float-right">{{$job->status->name}}</span>
-                            </h4></a>
-                        <div class="progress mb-4">
-                            <div class="progress-bar
+                            </h4>
+                            <div class="progress mb-4">
+                                <div class="progress-bar
                                     @switch($job->status_id)
-                                        @case(1)
-                                            bg-info
-                                        @break
+                                @case(1)
+                                    bg-info
+@break
 
-                                        @case(2)
-                                            bg-primary
-                                        @break
+                                @case(2)
+                                    bg-primary
+@break
 
-                                        @case(3)
-                                            bg-warning
-                                        @break
+                                @case(3)
+                                    bg-warning
+@break
 
-                                        @case(4)
-                                            bg-success
-                                        @break
+                                @case(4)
+                                    bg-success
+@break
 
-                                        @case(5)
-                                            bg-danger
-                                        @break
+                                @case(5)
+                                    bg-danger
+@break
 
-                                        @case(6)
-                                            bg-danger
-                                        @break
+                                @case(6)
+                                    bg-danger
+@break
 
-                                        @default
-                                            bg-secondary
-                                    @endswitch
-                                " role="progressbar"
-                                 style="width: {{($job->status_id / (count(\App\Models\Status::all())-2))*100}}%"
-                                 aria-valuenow="{{$job->status_id}}"
-                                 aria-valuemin="0"
-                                 aria-valuemax="{{count(\App\Models\Status::all())-2}}">{{$job->status->name}}
+                                @default
+                                    bg-secondary
+@endswitch
+                                    " role="progressbar"
+                                     style="width: {{($job->status_id / (count(\App\Models\Status::all())-2))*100}}%"
+                                     aria-valuenow="{{$job->status_id}}"
+                                     aria-valuemin="0"
+                                     aria-valuemax="{{count(\App\Models\Status::all())-2}}">{{$job->status->name}}
+                                </div>
                             </div>
-                        </div>
+                        </a>
 
                     @endforeach
 
@@ -123,18 +124,19 @@
                     @foreach($lowItems as $lowItem)
                         <a href="{{ route('items.show',$lowItem->id) }}"><h4
                                 class="small font-weight-bold">{{$lowItem->name}}<span class="float-right">{{$lowItem->min_amount}} Ks</span>
-                            </h4></a>
-                        <div class="progress mb-4">
-                            <div class="progress-bar bg-primary" role="progressbar"
-                                 style="width: {{$lowItem->amount * 100}}%" aria-valuenow="{{$lowItem->amount}}"
-                                 aria-valuemin="0" aria-valuemax="{{$lowItem->min_amount}}">{{$lowItem->amount}} Ks
+                            </h4>
+                            <div class="progress mb-4">
+                                <div class="progress-bar bg-primary" role="progressbar"
+                                     style="width: {{$lowItem->amount * 100}}%" aria-valuenow="{{$lowItem->amount}}"
+                                     aria-valuemin="0" aria-valuemax="{{$lowItem->min_amount}}">{{$lowItem->amount}} Ks
+                                </div>
+                                <div class="progress-bar bg-danger" role="progressbar"
+                                     style="width: {{($lowItem->min_amount - $lowItem->amount) * 100}}%"
+                                     aria-valuenow="{{$lowItem->min_amount - $lowItem->amount}}"
+                                >{{$lowItem->min_amount - $lowItem->amount}} Ks
+                                </div>
                             </div>
-                            <div class="progress-bar bg-danger" role="progressbar"
-                                 style="width: {{($lowItem->min_amount - $lowItem->amount) * 100}}%"
-                                 aria-valuenow="{{$lowItem->min_amount - $lowItem->amount}}"
-                            >{{$lowItem->min_amount - $lowItem->amount}} Ks
-                            </div>
-                        </div>
+                        </a>
                     @endforeach
 
                 </div>

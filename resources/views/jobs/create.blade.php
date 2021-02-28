@@ -59,7 +59,7 @@
 
         <div class="form-group">
             <label for="status-select">Status:</label>
-            <select name="status_id" id="status-select"required>
+            <select name="status_id" id="status-select" required>
                 @foreach($statuses as $status)
                     <option value="{{$status->id}}">{{$status->id.' : '.$status->name}}</option>
                 @endforeach

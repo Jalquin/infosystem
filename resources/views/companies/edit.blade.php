@@ -63,7 +63,8 @@
         </div>
 
         <div class="form-check mb-4">
-            <input id="new_address" type="checkbox" name="new_address" class="form-check-input" data-toggle="collapse" data-target="#new_address_collapse">
+            <input id="new_address" type="checkbox" name="new_address" class="form-check-input" data-toggle="collapse"
+                   data-target="#new_address_collapse">
             <label class="form-check-label" for="new_address">Nová adresa</label>
         </div>
 

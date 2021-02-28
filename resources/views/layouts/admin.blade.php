@@ -102,8 +102,8 @@
             </a>
         </li>
 
-        @if(Auth::user()->admin == 1)
-            <!-- Divider -->
+    @if(Auth::user()->admin == 1)
+        <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
@@ -171,7 +171,8 @@
                         <a class="collapse-item" href="{{route('positions.index')}}">Umístění</a>
                     </div>
                 </div>
-                <div id="collapseJob" class="collapse" aria-labelledby="headingJobSettings" data-parent="#accordionSidebar"
+                <div id="collapseJob" class="collapse" aria-labelledby="headingJobSettings"
+                     data-parent="#accordionSidebar"
                      style="">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Nastavení zakázek:</h6>
@@ -195,9 +196,9 @@
                     </div>
                 </div>
             </li>
-        @endif
+    @endif
 
-        <!-- Divider -->
+    <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
         <!-- Sidebar Toggler (Sidebar) -->

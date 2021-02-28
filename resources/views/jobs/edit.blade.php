@@ -53,7 +53,7 @@
         <div class="form-group">
             <label for="tender_number">Číslo nabídky:</label>
             <input id="tender_number" type="text" name="tender_number" value="{{ $job->tender_number }}"
-                class="form-control" placeholder="Číslo nabídky">
+                   class="form-control" placeholder="Číslo nabídky">
         </div>
         <div class="form-group">
             <label for="invoice_number">Číslo faktury:</label>
@@ -85,7 +85,8 @@
         </div>
 
         <div class="form-check mb-4">
-            <input id="new_address" type="checkbox" name="new_address" class="form-check-input" data-toggle="collapse" data-target="#new_address_collapse">
+            <input id="new_address" type="checkbox" name="new_address" class="form-check-input" data-toggle="collapse"
+                   data-target="#new_address_collapse">
             <label class="form-check-label" for="new_address">Nová adresa</label>
         </div>
 

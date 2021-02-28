@@ -42,12 +42,16 @@
                       placeholder="Popis">{{ $item->description }}</textarea>
         </div>
         <div class="form-group">
-            <label for="image">Obrázek:</label>
             @if($item->image)
-                <img class="img-fluid.max-height: 500px" src="{{asset('storage/items_img/'. $item->image)}}"
+                <img class="img-fluid mb-2" src="{{asset('storage/items_img/'. $item->image)}}"
                      alt="Obrázek položky {{ $item->name }}">
             @endif
-            <input type="file" class="form-control-file" name="image" id="image">
+            <div class="custom-file" id="customFile" lang="cs">
+                <input type="file" class="custom-file-input" id="exampleInputFile" name="image" aria-describedby="fileHelp">
+                <label class="custom-file-label" for="exampleInputFile">
+                    Zvolte obrázek...
+                </label>
+            </div>
         </div>
         <div class="form-group">
             <label for="amount">Množství:</label>
@@ -101,6 +105,11 @@
     <script
         src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006273/BBBootstrap/choices.min.js?version=7.0.0"></script>
     <script>
+        $('#exampleInputFile').on('change',function(){
+            const fileName = $(this).val();
+            fieldVal = fileName.replace("C:\\fakepath\\", "");
+            $(this).next('.custom-file-label').html(fieldVal);
+        })
         $(document).ready(function () {
             const categorySelectMultiple = new Choices('#category-select-multiple', {
                 removeItemButton: true,

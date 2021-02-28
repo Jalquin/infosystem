@@ -35,7 +35,7 @@
                 <div class="form-group">
                     <label for="category-select-multiple">Zvolte kategorii/e:</label>
                     <select name="categories[]" id="category-select-multiple"
-                            placeholder="Zvolte až 5 kategorií" multiple>
+                            placeholder="Zvolte kategorie" multiple>
                         @foreach($categories as $category)
                             <option value="{{$category->id}}"
                                     @if(isset($_GET["categories"]) && in_array($category->id, $_GET["categories"])) selected @endif>{{$category->name}}</option>
@@ -72,7 +72,8 @@
                     @foreach ($categoriesItem->unique('id') as $categoryItem)
                         <tr>
                             <td>{{ $categoryItem->name }}</td>
-                            <td>{{ $categoryItem->amount }} @if($categoryItem->min_amount) {{' / '.$categoryItem->min_amount}} @endif Ks
+                            <td>{{ $categoryItem->amount }} @if($categoryItem->min_amount) {{' / '.$categoryItem->min_amount}} @endif
+                                Ks
                                 <div class="btn-group float-right" role="group" aria-label="Basic example"><a
                                         class="btn btn-outline-secondary"
                                         href="{{route('items.amount.add', $categoryItem->id)}}">+</a><a
@@ -269,7 +270,8 @@
                         <tr>
                             <td>{{ $lowItem->name }}</td>
 
-                            <td>{{ $lowItem->amount }} @if($lowItem->min_amount) {{' / '.$lowItem->min_amount}} @endif Ks
+                            <td>{{ $lowItem->amount }} @if($lowItem->min_amount) {{' / '.$lowItem->min_amount}} @endif
+                                Ks
                                 <div class="btn-group float-right" role="group" aria-label="Basic example">
                                     <a
                                         class="btn btn-outline-secondary"

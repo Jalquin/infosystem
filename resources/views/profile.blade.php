@@ -91,7 +91,8 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="admin" id="admin" @if(Auth::user()->admin == 1) checked @endif>
+                                        <input type="checkbox" class="form-check-input" name="admin" id="admin"
+                                               @if(Auth::user()->admin == 1) checked @endif>
                                         <label class="form-check-label" for="admin">Admin</label>
                                     </div>
                                 </div>

@@ -36,11 +36,11 @@
                     href="{{route('items.amount.subtract', $item->id )}}">-</a>
             </div>
         </dd>
-    @if($item->image)
+        @if($item->image)
             <dt class="col-sm-1">Obrázek:</dt>
-            <dd class="col-sm-11"><img class="img-fluid.max-height: 500px"
-                                      src="{{asset('storage/items_img/'. $item->image)}}"
-                                      alt="Obrázek položky {{ $item->name }}"></dd>
+            <dd class="col-sm-11"><img class="img-fluid"
+                                       src="{{asset('storage/items_img/'. $item->image)}}"
+                                       alt="Obrázek položky {{ $item->name }}"></dd>
         @endif
         @if($item->description)
             <dt class="col-sm-1">Popis:</dt>
