@@ -44,7 +44,7 @@
         <div class="form-group">
             <label for="image">Obrázek:</label>
             @if($item->image)
-                <img class="img-fluid" style="max-height: 500px" src="{{asset('storage/items_img/'. $item->image)}}"
+                <img class="img-fluid.max-height: 500px" src="{{asset('storage/items_img/'. $item->image)}}"
                      alt="Obrázek položky {{ $item->name }}">
             @endif
             <input type="file" class="form-control-file" name="image" id="image">

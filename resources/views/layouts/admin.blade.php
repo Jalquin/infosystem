@@ -122,7 +122,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
                    aria-expanded="false" aria-controls="collapseSettings">
                     <i class="fas fa-cogs"></i>
-                    <span>Nastavení</span>
+                    <span>Nastavení komponent</span>
                 </a>
                 <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings"
                      data-parent="#accordionSidebar"

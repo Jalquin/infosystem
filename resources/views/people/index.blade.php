@@ -35,6 +35,8 @@
                     <thead>
                     <tr>
                         <th>Jméno</th>
+                        <th>Telefon</th>
+                        <th>Email</th>
                         <th>Role</th>
                         <th>Akce</th>
                     </tr>
@@ -42,6 +44,8 @@
                     <tfoot>
                     <tr>
                         <th>Jméno</th>
+                        <th>Telefon</th>
+                        <th>Email</th>
                         <th>Role</th>
                         <th>Akce</th>
                     </tr>
@@ -51,6 +55,8 @@
                     @foreach ($people as $person)
                         <tr>
                             <td>{{ $person->name }}</td>
+                            <td>@if($person->phone){{ $person->phone }}@endif</td>
+                            <td>@if($person->email){{ $person->email }}@endif</td>
                             <td>@if($person->role){{ $person->role->name }}@endif</td>
                             <td>
                                 <form action="{{ route('people.destroy',$person->id) }}" method="POST">

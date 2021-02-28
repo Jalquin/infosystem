@@ -50,6 +50,15 @@
                     @foreach($company->people as $person)
                         <li>
                             <a href="{{route('people.show', $person->id)}}">{{$person->name}}@if($person->role){{' - '.$person->role->name}}@endif</a>
+                            @unless($person->jobs->isEmpty())
+                                <ul>
+                                @foreach($person->jobs as $job)
+                                        <li>
+                                            <a href="{{route('jobs.show', $job->id)}}">{{$job->number.': '.$job->name}}</a>
+                                        </li>
+                                @endforeach
+                                </ul>
+                            @endunless
                         </li>
                     @endforeach
                 </ul>

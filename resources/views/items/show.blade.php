@@ -38,7 +38,7 @@
         </dd>
     @if($item->image)
             <dt class="col-sm-1">Obrázek:</dt>
-            <dd class="col-sm-11"><img class="img-fluid" style="max-height: 500px"
+            <dd class="col-sm-11"><img class="img-fluid.max-height: 500px"
                                       src="{{asset('storage/items_img/'. $item->image)}}"
                                       alt="Obrázek položky {{ $item->name }}"></dd>
         @endif

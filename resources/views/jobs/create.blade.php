@@ -31,7 +31,7 @@
     <form action="{{ route('jobs.store') }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="number">Číslo objednávky:</label>
+            <label for="number">Číslo závazné objednávky:</label>
             <input id="number" type="text" name="number" class="form-control" placeholder="Číslo objednávky" required>
         </div>
         <div class="form-group">

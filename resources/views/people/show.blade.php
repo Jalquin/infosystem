@@ -67,7 +67,7 @@
                 <ul>
                     @foreach($person->jobs as $job)
                         <li>
-                            <a href="{{route('jobs.show', $job->id)}}">{{$job->name}}</a>
+                            <a href="{{route('jobs.show', $job->id)}}">{{$job->number.': '.$job->name}}</a>
                         </li>
                     @endforeach
                 </ul>

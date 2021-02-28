@@ -34,9 +34,9 @@
                 <table class="dataTables_wrapper dt-bootstrap4" id="myTable">
                     <thead>
                     <tr>
-                        <th>Číslo nabídky</th>
-                        <th>Číslo objednávky</th>
-                        <th>Číslo faktury</th>
+                        <th>Nabídka</th>
+                        <th>Závazná objednávka</th>
+                        <th>Faktura</th>
                         <th>Název</th>
                         <th>Status</th>
                         <th>Akce</th>
@@ -44,9 +44,9 @@
                     </thead>
                     <tfoot>
                     <tr>
-                        <th>Číslo nabídky</th>
-                        <th>Číslo objednávky</th>
-                        <th>Číslo faktury</th>
+                        <th>Nabídka</th>
+                        <th>Závazná objednávka</th>
+                        <th>Faktura</th>
                         <th>Název</th>
                         <th>Status</th>
                         <th>Akce</th>

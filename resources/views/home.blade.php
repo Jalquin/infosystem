@@ -23,16 +23,30 @@
 
             <!-- Project Card Example -->
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Probíhající zakázky
+                <div class="card-header">
+                    <h4 class="float-left">Probíhající zakázky</h4>
+                    <div class="float-right">
+                        <a class="btn btn-success btn-icon-split mb-1" href="{{ route('jobs.create') }}">
+                            <span class="icon text-white-50">
+                                <i class="far fa-file"></i>
+                                <i class="fas fa-hammer"></i>
+                            </span>
+                            <span class="text">Nová zakázka</span>
+                        </a>
+                        <a class="btn btn-success btn-icon-split mb-1" href="{{ route('people.create') }}">
+                            <span class="icon text-white-50">
+                                <i class="far fa-file"></i>
+                                <i class="fas fa-user-friends"></i>
+                            </span>
+                            <span class="text">Nová osoba</span>
+                        </a>
                         <a class="btn btn-info btn-icon-split mb-1" href="{{ route('jobs.index') }}">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-hammer"></i>
-                        </span>
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-hammer"></i>
+                                </span>
                             <span class="text">Zakázky</span>
                         </a>
-                    </h6>
-
+                    </div>
                 </div>
                 <div class="card-body">
 
@@ -93,16 +107,16 @@
 
             <!-- Project Card Example -->
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Chybějící položky skladu
+                <div class="card-header">
+                    <h4 class="float-left">Chybějící položky skladu</h4>
+                    <div class="float-right">
                         <a class="btn btn-info btn-icon-split mb-1" href="{{ route('items.index') }}">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-warehouse"></i>
-                        </span>
+                            <span class="icon text-white-50">
+                                <i class="fas fa-warehouse"></i>
+                            </span>
                             <span class="text">Sklad</span>
                         </a>
-                    </h6>
-
+                    </div>
                 </div>
                 <div class="card-body">
 

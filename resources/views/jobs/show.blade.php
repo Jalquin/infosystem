@@ -14,29 +14,33 @@
 
     <dl class="row mt-1 border">
         @if($job->tender_number)
-            <dt class="col-sm-1">Číslo nabídky:</dt>
-            <dd class="col-sm-11">{{ $job->tender_number }}</dd>
+            <dt class="col-sm-2">Nabídka:</dt>
+            <dd class="col-sm-10">{{ $job->tender_number }}</dd>
         @endif
-        <dt class="col-sm-1">Číslo objednávky:</dt>
-        <dd class="col-sm-11">{{ $job->number }}</dd>
+        <dt class="col-sm-2">Závazná objednávka:</dt>
+        <dd class="col-sm-10">{{ $job->number }}</dd>
         @if($job->invoice_number)
-            <dt class="col-sm-1">Číslo faktury:</dt>
-            <dd class="col-sm-11">{{ $job->invoice_number }}</dd>
+            <dt class="col-sm-2">Faktura:</dt>
+            <dd class="col-sm-10">{{ $job->invoice_number }}</dd>
         @endif
-        <dt class="col-sm-1">Název:</dt>
-        <dd class="col-sm-11">{{ $job->name }}</dd>
+        <dt class="col-sm-2">Název:</dt>
+        <dd class="col-sm-10">{{ $job->name }}</dd>
+        <dt class="col-sm-2">Vytvoření zakázky:</dt>
+        <dd class="col-sm-10">{{ $job->created_at }}</dd>
         @if($job->date)
-            <dt class="col-sm-1">Datum:</dt>
-            <dd class="col-sm-11">{{ $job->date }}</dd>
+            <dt class="col-sm-2">Datum:</dt>
+            <dd class="col-sm-10">{{ $job->date }}</dd>
         @endif
+        <dt class="col-sm-2">Poslední úprava:</dt>
+        <dd class="col-sm-10">{{ $job->updated_at }}</dd>
         @if($job->description)
-            <dt class="col-sm-1">Popis:</dt>
-            <dd class="col-sm-11">
+            <dt class="col-sm-2">Popis:</dt>
+            <dd class="col-sm-10">
                 <textarea rows="10" style="min-width: 100%" readonly>{{ $job->description }}</textarea>
             </dd>
         @endif
-        <dt class="col-sm-1">Status:</dt>
-        <dd class="col-sm-11">
+        <dt class="col-sm-2">Status:</dt>
+        <dd class="col-sm-10">
             <b class="
                 @switch($job->status_id)
             @case(1)
