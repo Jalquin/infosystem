@@ -19,7 +19,7 @@ class CreateAddressesTable extends Migration
             $table->string('number')->nullable();
             $table->string('zip')->nullable();
             $table->string('city');
-            $table->foreignId('address_type_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('address_type_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
         });
     }

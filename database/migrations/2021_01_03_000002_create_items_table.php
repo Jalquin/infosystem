@@ -22,7 +22,7 @@ class CreateItemsTable extends Migration
             $table->integer('min_amount')->nullable();
             $table->boolean('is_enough')->nullable();
             $table->integer('price')->nullable();
-            $table->foreignId('position_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('position_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
         });
     }

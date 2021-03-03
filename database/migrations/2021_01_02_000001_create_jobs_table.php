@@ -21,7 +21,7 @@ class CreateJobsTable extends Migration
             $table->text('description')->nullable();
             $table->string('tender_number')->nullable();
             $table->integer('invoice_number')->nullable();
-            $table->foreignId('status_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('status_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
         });
     }

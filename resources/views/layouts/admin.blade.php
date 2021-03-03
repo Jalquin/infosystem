@@ -26,6 +26,7 @@
     <link href="{{ asset('img/favicon.png') }}" rel="icon" type="image/png">
 
 </head>
+
 <body id="page-top">
 
 <!-- Page Wrapper -->
@@ -36,7 +37,7 @@
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
             <div class="sidebar-brand-icon">
-                <i class="fas fa-globe-europe"></i>
+                <img class="img-fluid" src="{{ asset('img/svg/lefaservis_white.svg')}}" alt="Logo firmy LEFA Servis">
             </div>
             <div class="sidebar-brand-text mx-3">Info System</div>
         </a>
@@ -254,7 +255,7 @@
                                 </span>
                                 <span class="text">Registrovat</span>
                             </a>
-                    @endguest
+                        @endguest
 
                     <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
