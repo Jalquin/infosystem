@@ -31,7 +31,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="dataTables_wrapper dt-bootstrap4" id="myTable">
+                <table class="display compact" id="myTable">
                     <thead>
                     <tr>
                         <th>Nabídka</th>
