@@ -31,12 +31,13 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+/*
+    Auth::routes([
+    'register' => false
+    ]);
+*/
 
 Auth::routes();
-
-Route::get('/blank', function () {
-    return view('blank');
-})->name('blank');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 

@@ -10,7 +10,8 @@
                     <div class="card-body p-0">
                         <div class="row">
                             <div class="col-lg-6 my-auto">
-                                <img class="img-fluid" src="{{ asset('img/svg/lefaservis_blue.svg')}}" alt="Logo firmy LEFA Servis">
+                                <img class="img-fluid" src="{{ asset('img/svg/lefaservis_blue.svg')}}"
+                                     alt="Logo firmy LEFA Servis">
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
@@ -64,7 +65,7 @@
 
                                     <div class="text-center">
                                         <a class="small" href="{{ route('login') }}">
-                                            {{ __('Již máte účet? Přihlásit ->') }}
+                                            {{ __('Již máte účet? Přihlásit ➔') }}
                                         </a>
                                     </div>
                                 </div>

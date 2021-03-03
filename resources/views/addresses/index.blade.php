@@ -31,20 +31,20 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="display compact" id="myTable">
+                <table class="display compact nowrap" id="myTable">
                     <thead>
                     <tr>
                         <th>Ulice</th>
-                        <th>Číslo</th>
                         <th>Obec/Město</th>
+                        <th>Typ</th>
                         <th>Akce</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
                         <th>Ulice</th>
-                        <th>Číslo</th>
                         <th>Obec/Město</th>
+                        <th>Typ</th>
                         <th>Akce</th>
                     </tr>
                     </tfoot>
@@ -52,9 +52,9 @@
 
                     @foreach ($addresses as $address)
                         <tr>
-                            <td>{{ $address->street }}</td>
-                            <td>{{ $address->number }}</td>
+                            <td>{{ $address->street }} {{ $address->number }}</td>
                             <td>{{ $address->city }}</td>
+                            <td>{{ $address->addressType->name }}</td>
                             <td>
                                 <form action="{{ route('addresses.destroy',$address->id) }}" method="POST">
 

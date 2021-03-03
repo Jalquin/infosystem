@@ -53,7 +53,7 @@
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class="display compact" id="myTable2">
+                <table class="display compact nowrap" id="myTable2">
                     <thead>
                     <tr>
                         <th>Název</th>
@@ -154,7 +154,7 @@
         <div class="collapse" id="collapseCard1">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="display compact" id="myTable">
+                    <table class="display compact nowrap" id="myTable">
                         <thead>
                         <tr>
                             <th>Název</th>
@@ -184,7 +184,8 @@
                                 <td>
                                     <form action="{{ route('items.destroy',$item->id) }}" method="POST">
 
-                                        <a class="btn btn-info btn-icon-split" href="{{ route('items.show',$item->id) }}">
+                                        <a class="btn btn-info btn-icon-split"
+                                           href="{{ route('items.show',$item->id) }}">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-info-circle"></i>
                                             </span>
@@ -219,7 +220,8 @@
                                                             <span aria-hidden="true">×</span>
                                                         </button>
                                                     </div>
-                                                    <div class="modal-body">Opravdu chcete smazat položku {{$item->name}}?
+                                                    <div class="modal-body">Opravdu chcete smazat
+                                                        položku {{$item->name}}?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button class="btn btn-link" type="button"
@@ -254,7 +256,7 @@
         <div class="collapse" id="collapseCard2">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="display compact" id="myTable1">
+                    <table class="display compact nowrap" id="myTable1">
                         <thead>
                         <tr>
                             <th>Název</th>
@@ -325,7 +327,8 @@
                                                             <span aria-hidden="true">×</span>
                                                         </button>
                                                     </div>
-                                                    <div class="modal-body">Opravdu chcete smazat položku {{$lowItem->name}}
+                                                    <div class="modal-body">Opravdu chcete smazat
+                                                        položku {{$lowItem->name}}
                                                         ?
                                                     </div>
                                                     <div class="modal-footer">

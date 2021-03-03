@@ -114,7 +114,7 @@
             <select name="companies[]" id="company-select-multiple" placeholder="Zvolte firmy" multiple>
                 @foreach($companies as $company)
                     <option value="{{$company->id}}"
-                            @if(in_array($address->id, $company->addresses->pluck('id')->toArray())) selected @endif>{{$company->name}}</option>
+                            @if(in_array($company->id, $person->companies->pluck('id')->toArray())) selected @endif>{{$company->name}}</option>
                 @endforeach
             </select>
         </div>

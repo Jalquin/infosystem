@@ -238,6 +238,20 @@
                                 <figure class="img-profile rounded-circle avatar font-weight-bold"
                                         data-initial="{{ Auth::user()->name[0] }}"></figure>
                             </a>
+
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                 aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="{{ route('profile') }}">
+                                    <i class="fas fa-user fa-sm mr-2 text-gray-400"></i>
+                                    {{ __('Profil') }}
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm mr-2 text-gray-400"></i>
+                                    {{ __('Odhlásit se') }}
+                                </a>
+                            </div>
                         @endauth
 
                         @guest
@@ -248,32 +262,18 @@
                                 </span>
                                 <span class="text">Přihlásit se</span>
                             </a>
-                            <a class="btn btn-secondary btn-icon-split"
-                               href="{{ route('register') }}">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-user-plus"></i>
-                                </span>
-                                <span class="text">Registrovat</span>
-                            </a>
+                            @if(Route::has('register'))
+                                <a class="btn btn-secondary btn-icon-split"
+                                   href="{{ route('register') }}">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-user-plus"></i>
+                                    </span>
+                                    <span class="text">Registrovat</span>
+                                </a>
+                            @endif
                         @endguest
-
-                    <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                             aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="{{ route('profile') }}">
-                                <i class="fas fa-user fa-sm mr-2 text-gray-400"></i>
-                                {{ __('Profil') }}
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm mr-2 text-gray-400"></i>
-                                {{ __('Odhlásit se') }}
-                            </a>
-                        </div>
                     </li>
-
                 </ul>
-
             </nav>
             <!-- End of Topbar -->
 

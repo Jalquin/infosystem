@@ -10,7 +10,8 @@
                     <div class="card-body p-0">
                         <div class="row">
                             <div class="col-lg-6 my-auto">
-                                <img class="img-fluid" src="{{ asset('img/svg/lefaservis_blue.svg')}}" alt="Logo firmy LEFA Servis">
+                                <img class="img-fluid" src="{{ asset('img/svg/lefaservis_blue.svg')}}"
+                                     alt="Logo firmy LEFA Servis">
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
@@ -48,9 +49,9 @@
                                             </button>
                                         </div>
 
-                                        <hr>
-
                                         @if (Route::has('register'))
+                                            <hr>
+
                                             <div class="text-center">
                                                 <a class="small"
                                                    href="{{ route('register') }}">{{ __('Vytvořit účet') }}</a>

@@ -47,7 +47,8 @@
                      alt="Obrázek položky {{ $item->name }}">
             @endif
             <div class="custom-file" id="customFile" lang="cs">
-                <input type="file" class="custom-file-input" id="exampleInputFile" name="image" aria-describedby="fileHelp">
+                <input type="file" class="custom-file-input" id="exampleInputFile" name="image"
+                       aria-describedby="fileHelp">
                 <label class="custom-file-label" for="exampleInputFile">
                     Zvolte obrázek...
                 </label>
@@ -105,7 +106,7 @@
     <script
         src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006273/BBBootstrap/choices.min.js?version=7.0.0"></script>
     <script>
-        $('#exampleInputFile').on('change',function(){
+        $('#exampleInputFile').on('change', function () {
             const fileName = $(this).val();
             fieldVal = fileName.replace("C:\\fakepath\\", "");
             $(this).next('.custom-file-label').html(fieldVal);

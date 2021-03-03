@@ -52,7 +52,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="display compact" id="myTable">
+                <table class="display compact nowrap" id="myTable">
                     <thead>
                     <tr>
                         <th>Jméno</th>
