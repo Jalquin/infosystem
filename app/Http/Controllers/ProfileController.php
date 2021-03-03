@@ -37,7 +37,7 @@ class ProfileController extends Controller
         ]);
 
         $admin = null;
-        if($request->admin == 'on')
+        if ($request->admin == 'on')
             $admin = 1;
         else
             $admin = 0;

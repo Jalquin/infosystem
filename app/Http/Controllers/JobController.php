@@ -47,7 +47,7 @@ class JobController extends Controller
         $addresses = Address::all();
         $people = Person::all();
         $addressTypes = AddressType::all();
-        return view('jobs.create', compact('statuses','items','addresses','people','addressTypes'));
+        return view('jobs.create', compact('statuses', 'items', 'addresses', 'people', 'addressTypes'));
     }
 
     /**
@@ -67,12 +67,12 @@ class JobController extends Controller
             'invoice_number'
         ]);
 
-        if($request->new_address == 'on'){
+        if ($request->new_address == 'on') {
             $request->validate([
-                'street'=> 'required',
+                'street' => 'required',
                 'number',
                 'zip',
-                'city'=> 'required'
+                'city' => 'required'
             ]);
         }
 
@@ -83,13 +83,13 @@ class JobController extends Controller
 
         $job->addresses()->attach($request->addresses);
 
-        if($request->new_address == 'on'){
+        if ($request->new_address == 'on') {
 
             $address = Address::create([
                 'street' => $request->street,
-                'number' =>$request->address_number,
+                'number' => $request->address_number,
                 'zip' => $request->zip,
-                'city'=> $request->city
+                'city' => $request->city
             ]);
 
             $address->addressType()->associate($request->address_type_id);
@@ -102,7 +102,7 @@ class JobController extends Controller
         $job->items()->attach($request->items);
 
         return redirect()->route('jobs.index')
-            ->with('success', 'Úspěšně přidána zakázka '.$request->number);
+            ->with('success', 'Úspěšně přidána zakázka ' . $request->number);
     }
 
     /**
@@ -117,7 +117,7 @@ class JobController extends Controller
         $addresses = Address::with('jobs')->get();
         $items = Item::with('jobs')->get();
         $status = Status::with('jobs')->get();
-        return view('jobs.show', compact('job','people','addresses','items','status'));
+        return view('jobs.show', compact('job', 'people', 'addresses', 'items', 'status'));
     }
 
     /**
@@ -133,7 +133,7 @@ class JobController extends Controller
         $addresses = Address::all();
         $people = Person::all();
         $addressTypes = AddressType::all();
-        return view('jobs.edit', compact('job','statuses','items','addresses','people','addressTypes'));
+        return view('jobs.edit', compact('job', 'statuses', 'items', 'addresses', 'people', 'addressTypes'));
     }
 
     /**
@@ -154,12 +154,12 @@ class JobController extends Controller
             'invoice_number'
         ]);
 
-        if($request->new_address == 'on'){
+        if ($request->new_address == 'on') {
             $request->validate([
-                'street'=> 'required',
+                'street' => 'required',
                 'address_number',
                 'zip',
-                'city'=> 'required'
+                'city' => 'required'
             ]);
         }
 
@@ -170,13 +170,13 @@ class JobController extends Controller
 
         $job->addresses()->sync($request->addresses);
 
-        if($request->new_address == 'on'){
+        if ($request->new_address == 'on') {
 
             $address = $address = Address::create([
                 'street' => $request->street,
-                'number' =>$request->address_number,
+                'number' => $request->address_number,
                 'zip' => $request->zip,
-                'city'=> $request->city
+                'city' => $request->city
             ]);
 
             $address->addressType()->associate($request->address_type_id);
@@ -189,7 +189,7 @@ class JobController extends Controller
         $job->items()->sync($request->items);
 
         return redirect()->route('jobs.index')
-            ->with('success', 'Úspěšně upravena zakázka '.$job->number);
+            ->with('success', 'Úspěšně upravena zakázka ' . $job->number);
     }
 
     /**
@@ -204,6 +204,6 @@ class JobController extends Controller
         $job->delete();
 
         return redirect()->route('jobs.index')
-            ->with('success', 'Úspěšně smazána zakázka '.$job->number);
+            ->with('success', 'Úspěšně smazána zakázka ' . $job->number);
     }
 }

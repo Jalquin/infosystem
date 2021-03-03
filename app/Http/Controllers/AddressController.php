@@ -57,10 +57,10 @@ class AddressController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'street'=> 'required',
+            'street' => 'required',
             'number',
             'zip',
-            'city'=> 'required'
+            'city' => 'required'
         ]);
 
         $address = Address::create($request->all());
@@ -69,7 +69,7 @@ class AddressController extends Controller
         $address->save();
 
         return redirect()->route('addresses.index')
-            ->with('success', 'Úspěšně přidána adresa '.$request->street.' '.$request->number.'.');
+            ->with('success', 'Úspěšně přidána adresa ' . $request->street . ' ' . $request->number . '.');
     }
 
     /**
@@ -112,10 +112,10 @@ class AddressController extends Controller
     public function update(Request $request, Address $address): RedirectResponse
     {
         $request->validate([
-            'street'=> 'required',
+            'street' => 'required',
             'number',
             'zip',
-            'city'=> 'required'
+            'city' => 'required'
         ]);
 
         $address->update($request->all());
@@ -124,7 +124,7 @@ class AddressController extends Controller
         $address->save();
 
         return redirect()->route('addresses.index')
-            ->with('success', 'Úspěšně upravena adresa '.$address->street.' '.$address->number.'.');
+            ->with('success', 'Úspěšně upravena adresa ' . $address->street . ' ' . $address->number . '.');
     }
 
     /**
@@ -139,6 +139,6 @@ class AddressController extends Controller
         $address->delete();
 
         return redirect()->route('addresses.index')
-            ->with('success', 'Úspěšně smazána adresa '.$address->street.' '.$address->number.'.');
+            ->with('success', 'Úspěšně smazána adresa ' . $address->street . ' ' . $address->number . '.');
     }
 }

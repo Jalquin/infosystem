@@ -34,7 +34,7 @@ class UserController extends Controller
             'usersCount' => $usersCount
         ];
 
-        return view('users.index', compact('widget','users'));
+        return view('users.index', compact('widget', 'users'));
     }
 
     /**
@@ -62,7 +62,7 @@ class UserController extends Controller
         ]);
 
         $admin = null;
-        if($request->admin == 'on')
+        if ($request->admin == 'on')
             $admin = 1;
         else
             $admin = 0;
@@ -75,7 +75,7 @@ class UserController extends Controller
         ]);
 
         return redirect()->route('users.index')
-            ->with('success', 'Úspěšně přidán uživatel '.$request->name);
+            ->with('success', 'Úspěšně přidán uživatel ' . $request->name);
     }
 
     /**
@@ -86,7 +86,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show',compact('user'));
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -97,7 +97,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit',compact('user'));
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -115,11 +115,11 @@ class UserController extends Controller
         ]);
 
         $admin = null;
-        if($request->admin == 'on')
+        if ($request->admin == 'on')
             $admin = 1;
         else
             $admin = 0;
-        if($request->password)
+        if ($request->password)
             $password = Hash::make($request->password);
         else
             $password = $user->password;
@@ -132,7 +132,7 @@ class UserController extends Controller
         ]);
 
         return redirect()->route('users.index')
-            ->with('success', 'Úspěšně upraven uživatel '.$user->name);
+            ->with('success', 'Úspěšně upraven uživatel ' . $user->name);
     }
 
     /**
@@ -147,6 +147,6 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index')
-            ->with('success', 'Úspěšně smazán uživatel '.$user->name);
+            ->with('success', 'Úspěšně smazán uživatel ' . $user->name);
     }
 }

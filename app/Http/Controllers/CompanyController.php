@@ -43,7 +43,7 @@ class CompanyController extends Controller
         $addresses = Address::all();
         $people = Person::all();
         $addressTypes = AddressType::all();
-        return view('companies.create', compact('addresses','people','addressTypes'));
+        return view('companies.create', compact('addresses', 'people', 'addressTypes'));
     }
 
     /**
@@ -61,12 +61,12 @@ class CompanyController extends Controller
             'note'
         ]);
 
-        if($request->new_address == 'on'){
+        if ($request->new_address == 'on') {
             $request->validate([
-                'street'=> 'required',
+                'street' => 'required',
                 'number',
                 'zip',
-                'city'=> 'required'
+                'city' => 'required'
             ]);
         }
 
@@ -75,7 +75,7 @@ class CompanyController extends Controller
         $company->people()->attach($request->people);
         $company->addresses()->attach($request->addresses);
 
-        if($request->new_address == 'on'){
+        if ($request->new_address == 'on') {
 
             $address = Address::create($request->all());
 
@@ -86,7 +86,7 @@ class CompanyController extends Controller
         }
 
         return redirect()->route('companies.index')
-            ->with('success', 'Úspěšně přidána firma '.$request->name);
+            ->with('success', 'Úspěšně přidána firma ' . $request->name);
     }
 
     /**
@@ -99,7 +99,7 @@ class CompanyController extends Controller
     {
         $addresses = Address::with('companies');
         $people = Person::with('companies');
-        return view('companies.show', compact('company','addresses','people'));
+        return view('companies.show', compact('company', 'addresses', 'people'));
     }
 
     /**
@@ -113,7 +113,7 @@ class CompanyController extends Controller
         $addresses = Address::all();
         $people = Person::all();
         $addressTypes = AddressType::all();
-        return view('companies.edit', compact('company','addresses','people','addressTypes'));
+        return view('companies.edit', compact('company', 'addresses', 'people', 'addressTypes'));
     }
 
     /**
@@ -132,12 +132,12 @@ class CompanyController extends Controller
             'note'
         ]);
 
-        if($request->new_address == 'on'){
+        if ($request->new_address == 'on') {
             $request->validate([
-                'street'=> 'required',
+                'street' => 'required',
                 'number',
                 'zip',
-                'city'=> 'required'
+                'city' => 'required'
             ]);
         }
 
@@ -146,7 +146,7 @@ class CompanyController extends Controller
         $company->people()->sync($request->people);
         $company->addresses()->sync($request->addresses);
 
-        if($request->new_address == 'on'){
+        if ($request->new_address == 'on') {
 
             $address = Address::create($request->all());
 
@@ -157,7 +157,7 @@ class CompanyController extends Controller
         }
 
         return redirect()->route('companies.index')
-            ->with('success', 'Úspěšně upravena firma '.$company->name);
+            ->with('success', 'Úspěšně upravena firma ' . $company->name);
     }
 
     /**
@@ -172,6 +172,6 @@ class CompanyController extends Controller
         $company->delete();
 
         return redirect()->route('companies.index')
-            ->with('success', 'Úspěšně smazána firma '.$company->name);
+            ->with('success', 'Úspěšně smazána firma ' . $company->name);
     }
 }

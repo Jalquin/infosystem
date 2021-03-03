@@ -7,7 +7,6 @@ use App\Models\Item;
 use App\Models\Position;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -36,12 +35,6 @@ class ItemController extends Controller
         $positions = Position::all();
         $categories = Category::all();
 
-        if ($request->position_id == null) {
-            $positionItems = Item::all();
-        } else {
-            $positionItems = Position::find($request->position_id)->items;
-        }
-
         if ($request->categories == null) {
             $categoriesItem = Item::all();
         } else {
@@ -53,7 +46,7 @@ class ItemController extends Controller
 
         $lowItems = Item::where('is_enough', 0)->get();
 
-        return view('items.index', compact('items', 'positionItems', 'positions', 'categories', 'categoriesItem', 'lowItems'));
+        return view('items.index', compact('positions', 'categories', 'items', 'categoriesItem', 'lowItems'));
     }
 
     /**
@@ -87,10 +80,11 @@ class ItemController extends Controller
             $fileName = $img->getClientOriginalName();
             $imageResize = Image::make($img->getRealPath());
             $imageResize->resize(500, 500, function ($constraint) {
-                $constraint->aspectRatio();}
-                );
+                $constraint->aspectRatio();
+            }
+            );
 
-            $imageResize->save(storage_path('app/public/items_img/'.$fileName));
+            $imageResize->save(storage_path('app/public/items_img/' . $fileName));
 
 //            $img->storeAs('items_img/original', $image, 'public');
         }
@@ -174,10 +168,11 @@ class ItemController extends Controller
             $fileName = $img->getClientOriginalName();
             $imageResize = Image::make($img->getRealPath());
             $imageResize->resize(500, 500, function ($constraint) {
-                $constraint->aspectRatio();}
+                $constraint->aspectRatio();
+            }
             );
 
-            $imageResize->save(storage_path('app/public/items_img/'.$fileName));
+            $imageResize->save(storage_path('app/public/items_img/' . $fileName));
 
 //            $img->storeAs('items_img/original', $image, 'public');
         }
