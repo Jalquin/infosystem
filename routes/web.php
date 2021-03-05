@@ -27,19 +27,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+Auth::routes([
+'register' => true,
+'reset' => false,
+'verify' => false
+]);
 
-/*
-    Auth::routes([
-    'register' => false
-    ]);
-*/
-
-Auth::routes();
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::resource('/users', UserController::class);
 
