@@ -156,7 +156,7 @@ class ItemController extends Controller
     {
         $image = $item->image;
         $request->validate([
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5000',
         ]);
         if ($request->hasFile('image')) {
             if ($image) {

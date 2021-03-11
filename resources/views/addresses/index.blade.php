@@ -54,7 +54,7 @@
                         <tr>
                             <td>{{ $address->street }} {{ $address->number }}</td>
                             <td>{{ $address->city }}</td>
-                            <td>{{ $address->addressType->name }}</td>
+                            <td>@if($address->addressType){{ $address->addressType->name }}@endif</td>
                             <td>
                                 <form action="{{ route('addresses.destroy',$address->id) }}" method="POST">
 

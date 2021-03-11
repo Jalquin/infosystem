@@ -44,7 +44,6 @@ class PersonController extends Controller
     {
         $addresses = Address::all();
         $companies = Company::all();
-        $jobs = Job::all();
         $roles = Role::all();
         $addressTypes = AddressType::all();
         return view('people.create', compact('addresses', 'companies', 'jobs', 'roles', 'addressTypes'));
@@ -92,8 +91,6 @@ class PersonController extends Controller
             $address->people()->attach($person);
         }
 
-        $person->jobs()->attach($request->jobs);
-
         return redirect()->route('people.index')
             ->with('success', 'Úspěšně přidána osoba ' . $request->name);
     }
@@ -124,7 +121,6 @@ class PersonController extends Controller
     {
         $addresses = Address::all();
         $companies = Company::all();
-        $jobs = Job::all();
         $roles = Role::all();
         $addressTypes = AddressType::all();
         return view('people.edit', compact('person', 'addresses', 'companies', 'jobs', 'roles', 'addressTypes'));
@@ -172,8 +168,6 @@ class PersonController extends Controller
 
             $address->people()->attach($person);
         }
-
-        $person->jobs()->sync($request->jobs);
 
         return redirect()->route('people.index')
             ->with('success', 'Úspěšně upravena osoba ' . $person->name);
