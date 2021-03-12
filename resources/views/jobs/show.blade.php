@@ -99,9 +99,17 @@
                 <label>Adresy:</label>
                 <ul>
                     @foreach($job->addresses as $address)
-                        <li>
-                            <a href="{{route('addresses.show', $address->id)}}">{{$address->street.' '.$address->number.', '.$address->city}}@if($address->addressType){{' - '.$address->addressType->name}}@endif</a>
-                        </li>
+                        <div class="row">
+                            <div class="col">
+                                <a class="btn btn-info btn-icon-split"
+                                   href=http://maps.google.com/maps?q={{str_replace(" ", "+", $address->street)}}+{{ $address->number }},+{{str_replace(" ", "+", $address->city) }} target="_blank">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-map-marked-alt"></i>
+                                        </span>
+                                </a>
+                                <a href="{{route('addresses.show', $address->id)}}">{{$address->street.' '.$address->number.', '.$address->city}}@if($address->addressType){{' - '.$address->addressType->name}}@endif</a>
+                            </div>
+                        </div>
                     @endforeach
                 </ul>
             </div>

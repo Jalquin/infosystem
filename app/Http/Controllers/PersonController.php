@@ -46,7 +46,7 @@ class PersonController extends Controller
         $companies = Company::all();
         $roles = Role::all();
         $addressTypes = AddressType::all();
-        return view('people.create', compact('addresses', 'companies', 'jobs', 'roles', 'addressTypes'));
+        return view('people.create', compact('addresses', 'companies', 'roles', 'addressTypes'));
     }
 
     /**
@@ -123,7 +123,7 @@ class PersonController extends Controller
         $companies = Company::all();
         $roles = Role::all();
         $addressTypes = AddressType::all();
-        return view('people.edit', compact('person', 'addresses', 'companies', 'jobs', 'roles', 'addressTypes'));
+        return view('people.edit', compact('person', 'addresses', 'companies', 'roles', 'addressTypes'));
     }
 
     /**

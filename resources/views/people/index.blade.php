@@ -55,8 +55,8 @@
                     @foreach ($people as $person)
                         <tr>
                             <td>{{ $person->name }}</td>
-                            <td>@if($person->phone){{ $person->phone }}@endif</td>
-                            <td>@if($person->email){{ $person->email }}@endif</td>
+                            <td>@if($person->phone)<a href="tel:{{ $person->phone }}">{{ $person->phone }}</a>@endif</td>
+                            <td>@if($person->email)<a href="mailto:{{ $person->email }}" target="_blank">{{ $person->email }}</a>@endif</td>
                             <td>@if($person->role){{ $person->role->name }}@endif</td>
                             <td>
                                 <form action="{{ route('people.destroy',$person->id) }}" method="POST">

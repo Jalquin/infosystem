@@ -34,6 +34,14 @@
     </dl>
 
     <div class="row">
+        <a class="btn btn-info btn-icon-split m-1"
+           href=http://maps.google.com/maps?q={{str_replace(" ", "+", $address->street)}}+{{ $address->number }},+{{str_replace(" ", "+", $address->city) }} target="_blank">
+                <span class="icon text-white-50">
+                    <i class="fas fa-map-marked-alt"></i>
+                </span>
+            <span class="text">Mapa</span>
+        </a>
+
         <a class="btn btn-warning btn-icon-split m-1"
            href="{{ route('addresses.edit',$address->id) }}">
             <span class="icon text-white-50">

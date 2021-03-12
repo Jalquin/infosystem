@@ -59,6 +59,14 @@
                                 <form action="{{ route('addresses.destroy',$address->id) }}" method="POST">
 
                                     <a class="btn btn-info btn-icon-split"
+                                       href=http://maps.google.com/maps?q={{str_replace(" ", "+", $address->street)}}+{{ $address->number }},+{{str_replace(" ", "+", $address->city) }} target="_blank">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-map-marked-alt"></i>
+                                        </span>
+                                        <span class="text">Mapa</span>
+                                    </a>
+
+                                    <a class="btn btn-info btn-icon-split"
                                        href="{{ route('addresses.show',$address->id) }}">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-info-circle"></i>

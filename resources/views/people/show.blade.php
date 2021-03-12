@@ -16,14 +16,16 @@
         <dt class="col-sm-1">Jméno:</dt>
         <dd class="col-sm-11">{{ $person->name }}</dd>
 
-        @if($person->email)
-            <dt class="col-sm-1">Email:</dt>
-            <dd class="col-sm-11">{{ $person->email }}</dd>
-        @endif
         @if($person->phone)
             <dt class="col-sm-1">Telefon:</dt>
-            <dd class="col-sm-11">{{ $person->phone }}</dd>
+            <dd class="col-sm-11"><a href="tel:{{ $person->phone }}">{{ $person->phone }}</a></dd>
         @endif
+
+        @if($person->email)
+            <dt class="col-sm-1">Email:</dt>
+            <dd class="col-sm-11"><a href="mailto:{{ $person->email }}" target="_blank">{{ $person->email }}</a></dd>
+        @endif
+
         @if($person->note)
             <dt class="col-sm-1">Poznámka:</dt>
             <dd class="col-sm-11">{{ $person->note }}</dd>
@@ -31,13 +33,21 @@
         @unless($person->addresses->isEmpty())
             <dt class="col-sm-1">Adresy:</dt>
             <dd class="col-sm-11">
-                <ul>
+
                     @foreach($person->addresses as $address)
-                        <li>
+                    <div class="row">
+                        <div class="col">
+                            <a class="btn btn-info btn-icon-split"
+                               href=http://maps.google.com/maps?q={{str_replace(" ", "+", $address->street)}}+{{ $address->number }},+{{str_replace(" ", "+", $address->city) }} target="_blank">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-map-marked-alt"></i>
+                                        </span>
+                            </a>
                             <a href="{{route('addresses.show', $address->id)}}">{{$address->street.' '.$address->number.', '.$address->city}}@if($address->addressType){{' - '.$address->addressType->name}}@endif</a>
-                        </li>
+                        </div>
+                    </div>
                     @endforeach
-                </ul>
+
             </dd>
         @endunless
     </dl>
