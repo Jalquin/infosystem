@@ -33,21 +33,19 @@
         @unless($person->addresses->isEmpty())
             <dt class="col-sm-1">Adresy:</dt>
             <dd class="col-sm-11">
-
-                    @foreach($person->addresses as $address)
-                    <div class="row">
-                        <div class="col">
-                            <a class="btn btn-info btn-icon-split"
-                               href=http://maps.google.com/maps?q={{str_replace(" ", "+", $address->street)}}+{{ $address->number }},+{{str_replace(" ", "+", $address->city) }} target="_blank">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-map-marked-alt"></i>
-                                        </span>
-                            </a>
-                            <a href="{{route('addresses.show', $address->id)}}">{{$address->street.' '.$address->number.', '.$address->city}}@if($address->addressType){{' - '.$address->addressType->name}}@endif</a>
-                        </div>
+                @foreach($person->addresses as $address)
+                <div class="row">
+                    <div class="col">
+                        <a class="btn btn-info btn-icon-split"
+                           href=http://maps.google.com/maps?q={{str_replace(" ", "+", $address->street)}}+{{ $address->number }},+{{str_replace(" ", "+", $address->city) }} target="_blank">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-map-marked-alt"></i>
+                                    </span>
+                        </a>
+                        <a href="{{route('addresses.show', $address->id)}}">{{$address->street.' '.$address->number.', '.$address->city}}@if($address->addressType){{' - '.$address->addressType->name}}@endif</a>
                     </div>
-                    @endforeach
-
+                </div>
+                @endforeach
             </dd>
         @endunless
     </dl>
